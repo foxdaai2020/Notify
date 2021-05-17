@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-navigation-drawer app>
+    <v-navigation-drawer app disable-resize-watcher color="HummingBird">
       <template v-slot:prepend>
         <v-list-item two-line>
           <v-list-item-avatar>
@@ -16,14 +16,15 @@
 
       <v-divider></v-divider>
 
-      <v-list dense>
-        <v-list-item v-for="(router, index) of routers" :key="index" link :to="router">
-          <v-list-item-icon>
-            <!-- <v-icon>{{ item.icon }}</v-icon> -->
-          </v-list-item-icon>
-
+      <v-list dense shaped>
+        <v-list-item
+          v-for="(item, index) of routers"
+          :key="index"
+          link
+          :to="item.route"
+        >
           <v-list-item-content>
-            <v-list-item-title>{{ router }}</v-list-item-title>
+            <v-list-item-title>{{ item.text }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -39,7 +40,12 @@
   export default {
     data: () => {
       return {
-        routers: ["project", "channel", "management", "service"],
+        routers: [
+          { text: "Project", route: "project" },
+          { text: "Channel", route: "channel" },
+          { text: "Management", route: "management" },
+          { text: "Service", route: "service" },
+        ],
       };
     },
   };
