@@ -6,30 +6,33 @@
       <p class="login-info">請輸入帳號資訊</p>
       <div class="login-input">
         <v-text-field
-          solo
+          outlined
           label="User Name"
           hide-details="auto"
           :style="{'min-height': '20px'}"
+          class="mb-4"
         ></v-text-field>
         <v-text-field
-          solo
+          outlined
           label="Password"
           hide-details="auto"
           :style="{'min-height': '20px'}"
+          class="mb-4"
         >
         </v-text-field>
       </div>
       <v-btn
-        color="#59A9A9"
+        color="FountainBlue White--text"
         width="186px"
         height="38px"
+        depressed
       >登入</v-btn>
     </div>
   </div>
 </div>
 </template>
 
-<style>
+<style lang="scss">
 .login {
   font-family: "Microsoft JhengHei";
   width: 100%;
@@ -70,10 +73,23 @@
   width: 186px;
 }
 
-.v-text-field.v-text-field--solo .v-input__control .v-input__slot {
-  min-height: 20px;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-}
+// .v-text-field.v-text-field--solo .v-input__control .v-input__slot {
+//   min-height: 20px;
+//   border: 1px solid lightgray;
+//   border-radius: 5px;
+// }
+    .login-input {
+      
+      .v-text-field--outlined .v-label {
+        top: unset;
+      }
+      .v-text-field {
+        background: var(--v-White-base);
+        .v-input__control .v-input__slot {
+          min-height: 40px;
+        }
+      } 
+    }
+    
 
 </style>
