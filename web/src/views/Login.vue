@@ -10,14 +10,14 @@
           label="User Name"
           hide-details="auto"
           :style="{'min-height': '20px'}"
-          class="mb-4"
+          class="mb-6"
         ></v-text-field>
         <v-text-field
           outlined
           label="Password"
           hide-details="auto"
           :style="{'min-height': '20px'}"
-          class="mb-4"
+          class="mb-6"
         >
         </v-text-field>
       </div>
@@ -33,6 +33,10 @@
 </template>
 
 <style lang="scss">
+html, body {
+  overflow-y: hidden;
+}
+
 .login {
   font-family: "Microsoft JhengHei";
   width: 100%;
@@ -50,7 +54,7 @@
   top: 135px;
   left: 160px;
   width: 258px;
-  height: 295px;
+  height: 332px;
   background-color: #F3F7F7;
   border-radius: 15px;
   text-align: center;
@@ -66,30 +70,21 @@
   font-size: 14px;
   text-align: left;
   margin-left: 38px;
+  padding-bottom: 6px;
 }
 
 .login-input {
   margin: auto;
   width: 186px;
-}
-
-// .v-text-field.v-text-field--solo .v-input__control .v-input__slot {
-//   min-height: 20px;
-//   border: 1px solid lightgray;
-//   border-radius: 5px;
-// }
-    .login-input {
-      
-      .v-text-field--outlined .v-label {
-        top: unset;
-      }
-      .v-text-field {
-        background: var(--v-White-base);
-        .v-input__control .v-input__slot {
-          min-height: 40px;
-        }
-      } 
+  .v-text-field--outlined .v-label {
+    top: unset;
+  }
+  .v-text-field {
+    background: var(--v-White-base);
+    .v-input__control .v-input__slot {
+      min-height: 40px;
     }
-    
+  } 
+}
 
 </style>
