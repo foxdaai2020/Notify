@@ -26,25 +26,30 @@
       <v-checkbox label="Close" class="mr-4"></v-checkbox>
       <v-btn small outlined>Show</v-btn>
     </template>
+
     <template>
       <v-checkbox label="Fail Post" class="mr-4"></v-checkbox>
       <v-checkbox label="Normal Post" class="mr-4"></v-checkbox>
-      <v-datetime-picker label="Select Datetime">
-        <template slot="dateIcon">
-          <v-icon>mdi-calendar</v-icon>
-        </template>
-        <template slot="timeIcon">
-          <v-icon>mdi-clock-outline</v-icon>
-        </template>
-      </v-datetime-picker>
-      <v-datetime-picker label="Select Datetime">
-        <template slot="dateIcon">
-          <v-icon>mdi-calendar</v-icon>
-        </template>
-        <template slot="timeIcon">
-          <v-icon>mdi-clock-outline</v-icon>
-        </template>
-      </v-datetime-picker>
+      <div class="d-flex datetimePicker" style="align-items: center;">
+        <span class="mr-2">Start Time</span>
+        <v-datetime-picker outlined hide-details>
+          <template slot="dateIcon">
+            <v-icon>mdi-calendar</v-icon>
+          </template>
+          <template slot="timeIcon">
+            <v-icon>mdi-clock-outline</v-icon>
+          </template>
+        </v-datetime-picker>
+        <span class="mr-2">End Time</span>
+        <v-datetime-picker outlined hide-details>
+          <template slot="dateIcon">
+            <v-icon>mdi-calendar</v-icon>
+          </template>
+          <template slot="timeIcon">
+            <v-icon>mdi-clock-outline</v-icon>
+          </template>
+        </v-datetime-picker>
+      </div>
       <v-btn small outlined>Show</v-btn>
     </template>
   </div>
@@ -69,8 +74,24 @@
       flex: 0;
       padding: 16px;
     }
+
+    .datetimePicker {
+      .v-text-field {
+        padding-top: unset;
+        margin-top: unset;
+
+        .v-text-field__details {
+          display: none;
+        }
+
+        margin-right: 16px;
+        .v-input__slot {
+          margin-bottom: unset;
+        }
+        input {
+          max-height: 24px;
+        }
+      }
+    }
   }
-  //   .test.v-text-field .v-input__control .v-input__slot {
-  //     min-height: 40px;
-  //   }
 </style>
