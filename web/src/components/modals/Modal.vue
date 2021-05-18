@@ -1,12 +1,11 @@
 <template>
   <v-navigation-drawer
-    absolute
-    v-if="openModal"
     v-model="openModal"
     :permanent="openModal"
     right
     temporary
     class="d-flex modal"
+    fixed
     style="height: 100vh;"
   >
     <v-card class="d-flex flex-column" style="flex: 1">

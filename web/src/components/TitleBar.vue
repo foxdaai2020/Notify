@@ -12,19 +12,37 @@
     <template v-if="serviceListFilter">
       <v-select
         heigth="20px"
-        style="max-width:150px"
         width="50px"
         hide-details
         dense
         class="mr-4"
         outlined
-      ></v-select>
+        chips
+        multiple
+        :items="items"
+        attach
+      >
+        <template v-slot:selection="{ item }">
+          <v-chip  small>
+            <span>{{ item }}</span>
+          </v-chip>
+          <!-- <span v-if="index === 1" class="grey--text caption">
+            (+{{ value.length - 1 }} others)
+          </span> -->
+        </template>
+      </v-select>
       <v-btn small outlined>Show</v-btn>
     </template>
 
     <template v-if="issueTackerFilter">
       <v-checkbox label="Open" class="mr-4"></v-checkbox>
       <v-checkbox label="Close" class="mr-4"></v-checkbox>
+      <datetime-picker>
+        Start Time
+      </datetime-picker>
+      <datetime-picker>
+        End Time
+      </datetime-picker>
       <v-btn small outlined>Show</v-btn>
     </template>
 
@@ -45,6 +63,11 @@
   import DateTimePicker from "./DateTimePicker";
 
   export default {
+    data: () => {
+      return {
+        items: ["11111", "21111", "31111", "313111", "3111ㄉ1", "311211"],
+      };
+    },
     props: ["serviceListFilter", "issueTackerFilter", "messageListFilter"],
     components: {
       "datetime-picker": DateTimePicker,

@@ -1,9 +1,17 @@
 <template>
   <div>
     <title-bar>Project Information</title-bar>
-    <div class="d-flex align-center">
-      <v-btn outlined color="Genoa" @click="openAddProjecModal = true"
-        >Project</v-btn
+    <div class="d-flex align-center ma-2">
+      <v-btn
+        outlined
+        color="Genoa"
+        small
+        @click="openAddProjectModal = true"
+      >
+        <v-icon left>
+          mdi-plus-circle-outline
+        </v-icon>
+        Project</v-btn
       >
       <v-spacer></v-spacer>
       <v-text-field
@@ -23,21 +31,25 @@
     ></v-data-table>
 
     <title-bar>Member List</title-bar>
+    <div class="d-flex align-center ma-2">
+    <v-spacer></v-spacer>
     <v-text-field
       v-model="search"
-      append-icon="mdi-magnify"
       label="Search"
       single-line
       hide-details
+      outlined
+      style="max-width:150px"
     ></v-text-field>
+    </div>
     <v-data-table
       :headers="headers"
       :items="desserts"
       :search="search"
     ></v-data-table>
     <add-project-modal
-      :openModal="openAddProjecModal"
-      @closeModal="openAddProjecModal = false"
+      :openModal="openAddProjectModal"
+      @closeModal="openAddProjectModal = false"
     ></add-project-modal>
   </div>
 </template>
@@ -47,16 +59,15 @@
   export default {
     data: () => {
       return {
-        openAddProjecModal: false,
+        openAddProjectModal: false,
         search: "",
         headers: [
           {
             text: "Dessert (100g serving)",
             align: "start",
-            filterable: false,
             value: "name",
           },
-          { text: "Calories", value: "calories" },
+          { text: "Calories", filterable: false, value: "calories" },
           { text: "Fat (g)", value: "fat" },
           { text: "Carbs (g)", value: "carbs" },
           { text: "Protein (g)", value: "protein" },
@@ -160,7 +171,7 @@
 
     background: var(--v-White-base);
     .v-input__control .v-input__slot {
-      min-height: 40px;
+      min-height: 20px;
     }
   }
 </style>
