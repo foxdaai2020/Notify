@@ -4,7 +4,7 @@
     <div class="d-flex align-center ma-2">
       <v-btn outlined color="Genoa" small @click="openAddProjecModal = true">
         <v-icon left>
-          mdi-plus-circle
+          mdi-plus-circle-outline
         </v-icon>
         Service</v-btn
       >
