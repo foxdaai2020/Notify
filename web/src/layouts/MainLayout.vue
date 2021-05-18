@@ -28,6 +28,7 @@
               <v-list-item
                 v-for="(item, index) in items"
                 :key="index"
+                @click="action(item.title)"
               >
                 <v-list-item-title>
                   <v-icon dense :color="item.color" style="padding-right:6px;">{{ item.icon }}</v-icon>
@@ -81,10 +82,19 @@
         ],
       };
     },
+    methods: {
+      action(title) {
+        if (title == "User Setting") {
+          console.log('user')
+        } else if(title == "Log Out") {
+          this.$router.push({ path: '/login' })
+        }
+      }
+    }
   };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .v-navigation-drawer {
   width: 180px !important;
 }
@@ -114,40 +124,24 @@
   z-index: 2;
 }
 
-.v-application--is-ltr .v-list.v-sheet .v-list-item, .v-application--is-ltr .v-list.v-sheet .v-list-item::before, .v-application--is-ltr .v-list.v-sheet .v-list-item > .v-ripple__container {
-  border-bottom-left-radius: 32px !important;
-  border-top-left-radius: 32px !important;
-}
-
 .v-list-item--link:before {
   margin-left: 16px;
   background-color: white;
 }
 
-.theme--light.v-list-item:hover::before {
-  opacity: 0.24;
-}
+// .v-application--is-ltr .v-list.v-sheet .v-list-item, .v-application--is-ltr .v-list.v-sheet .v-list-item::before, .v-application--is-ltr .v-list.v-sheet .v-list-item > .v-ripple__container {
+//   border-bottom-left-radius: 32px !important;
+//   border-top-left-radius: 32px !important;
+// }
 
-.theme--light.v-list-item:focus::before {
-  opacity: 0.62;
-}
+// .theme--light.v-list-item:focus::before {
+//   opacity: 0.62;
+// }
 
-.theme--light.v-list-item--active:hover::before, .theme--light.v-list-item--active::before {
-  opacity: 1;
-}
-
-.theme--light.v-list-item--active:focus::before {
-  opacity: 1;
-}
-
-.theme--light.v-list-item.v-list-item--highlighted::before {
-  opacity: 1;
-}
-
-.v-list-item:active {
-  margin-left: 16px;
-  background-color: white;
-}
+// .theme--light.v-list-item--active:hover::before,
+// .theme--light.v-list-item--active::before {
+//   opacity: 1;
+// }
 
 .v-btn:before {
   opacity: 0 !important;
@@ -157,4 +151,29 @@
   opacity: 0 !important;
 }
 
+.v-application--is-ltr .v-list.v-sheet .v-list-item {
+  &:before {
+    border-bottom-left-radius: 32px !important;
+    border-top-left-radius: 32px !important;
+  }
+  .v-ripple__container {
+    border-bottom-left-radius: 32px !important;
+    border-top-left-radius: 32px !important;
+  }
+}
+
+.theme--light.v-list-item:focus::before {
+  opacity: 0.62;
+}
+
+.theme--light.v-list-item--active {
+  &:before {
+    opacity: 1;
+  }
+  &:hover {
+    &:before {
+      opacity: 1;
+    }
+  }
+}
 </style>

@@ -47,10 +47,9 @@ export default{
   },
   methods: {
     login() {
-      var u = this.username
-      var p = this.password
-      if (u && p) {
-        console.log(this);
+      var loginuser = this.username
+      var loginpassword = this.password
+      if (loginuser && loginpassword) {
         this.$router.push({ path: '/' })
       }
     }
