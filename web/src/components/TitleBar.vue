@@ -5,9 +5,10 @@
     style="white-space:nowrap; align-items: center;"
   >
     <div class="text">
-      <slot name="title"></slot>
+      <span><slot></slot></span>
     </div>
     <v-spacer></v-spacer>
+
     <template v-if="serviceListFilter">
       <v-select
         heigth="20px"
@@ -27,36 +28,27 @@
       <v-btn small outlined>Show</v-btn>
     </template>
 
-    <template>
+    <template v-if="messageListFilter">
       <v-checkbox label="Fail Post" class="mr-4"></v-checkbox>
       <v-checkbox label="Normal Post" class="mr-4"></v-checkbox>
-      <div class="d-flex datetimePicker" style="align-items: center;">
-        <span class="mr-2">Start Time</span>
-        <v-datetime-picker outlined hide-details>
-          <template slot="dateIcon">
-            <v-icon>mdi-calendar</v-icon>
-          </template>
-          <template slot="timeIcon">
-            <v-icon>mdi-clock-outline</v-icon>
-          </template>
-        </v-datetime-picker>
-        <span class="mr-2">End Time</span>
-        <v-datetime-picker outlined hide-details>
-          <template slot="dateIcon">
-            <v-icon>mdi-calendar</v-icon>
-          </template>
-          <template slot="timeIcon">
-            <v-icon>mdi-clock-outline</v-icon>
-          </template>
-        </v-datetime-picker>
-      </div>
+      <datetime-picker>
+        Start Time
+      </datetime-picker>
+      <datetime-picker>
+        End Time
+      </datetime-picker>
       <v-btn small outlined>Show</v-btn>
     </template>
   </div>
 </template>
 <script>
+  import DateTimePicker from "./DateTimePicker";
+
   export default {
     props: ["serviceListFilter", "issueTackerFilter", "messageListFilter"],
+    components: {
+      "datetime-picker": DateTimePicker,
+    },
   };
 </script>
 <style lang="scss">

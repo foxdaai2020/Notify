@@ -1,20 +1,28 @@
 <template>
   <div>
-    <title-bar><div slot="title">Project Information</div></title-bar>
-    <v-text-field
-      v-model="search"
-      append-icon="mdi-magnify"
-      label="Search"
-      single-line
-      hide-details
-    ></v-text-field>
+    <title-bar>Project Information</title-bar>
+    <div class="d-flex align-center">
+      <v-btn outlined color="Genoa" @click="openAddProjecModal = true"
+        >Project</v-btn
+      >
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        label="Search"
+        single-line
+        hide-details
+        outlined
+        style="max-width:150px"
+      ></v-text-field>
+    </div>
+
     <v-data-table
       :headers="headers"
       :items="desserts"
       :search="search"
     ></v-data-table>
 
-    <title-bar><span slot="title">Member List</span></title-bar>
+    <title-bar>Member List</title-bar>
     <v-text-field
       v-model="search"
       append-icon="mdi-magnify"
@@ -27,14 +35,19 @@
       :items="desserts"
       :search="search"
     ></v-data-table>
+    <add-project-modal
+      :openModal="openAddProjecModal"
+      @closeModal="openAddProjecModal = false"
+    ></add-project-modal>
   </div>
 </template>
 <script>
   import TitleBar from "../components/TitleBar";
-
+  import AddProjectModal from "../components/modals/AddProject";
   export default {
     data: () => {
       return {
+        openAddProjecModal: false,
         search: "",
         headers: [
           {
@@ -135,6 +148,19 @@
     },
     components: {
       "title-bar": TitleBar,
+      "add-project-modal": AddProjectModal,
     },
   };
 </script>
+<style lang="scss">
+  .v-text-field.v-text-field--outlined {
+    .v-label {
+      top: unset;
+    }
+
+    background: var(--v-White-base);
+    .v-input__control .v-input__slot {
+      min-height: 40px;
+    }
+  }
+</style>
