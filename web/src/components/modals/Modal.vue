@@ -1,6 +1,7 @@
 <template>
   <v-navigation-drawer
     absolute
+    v-if="openModal"
     v-model="openModal"
     :permanent="openModal"
     right
