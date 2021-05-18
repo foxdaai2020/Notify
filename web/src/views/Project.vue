@@ -6,7 +6,7 @@
         outlined
         color="Genoa"
         small
-        @click="openAddProjecModal = true"
+        @click="openAddProjectModal = true"
       >
         <v-icon left>
           mdi-plus-circle-outline
@@ -48,8 +48,8 @@
       :search="search"
     ></v-data-table>
     <add-project-modal
-      :openModal="openAddProjecModal"
-      @closeModal="openAddProjecModal = false"
+      :openModal="openAddProjectModal"
+      @closeModal="openAddProjectModal = false"
     ></add-project-modal>
   </div>
 </template>
@@ -59,7 +59,7 @@
   export default {
     data: () => {
       return {
-        openAddProjecModal: false,
+        openAddProjectModal: false,
         search: "",
         headers: [
           {

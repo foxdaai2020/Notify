@@ -2,7 +2,7 @@
   <div>
     <title-bar>Channel Information</title-bar>
     <div class="d-flex align-center ma-2">
-      <v-btn outlined color="Genoa" small @click="openAddProjecModal = true">
+      <v-btn outlined color="Genoa" small @click="openAddChannelModal = true">
         <v-icon left>
           mdi-plus-circle-outline
         </v-icon>
@@ -42,19 +42,19 @@
       :items="desserts"
       :search="search"
     ></v-data-table>
-    <add-project-modal
-      :openModal="openAddProjecModal"
-      @closeModal="openAddProjecModal = false"
-    ></add-project-modal>
+    <add-channel-modal
+      :openModal="openAddChannelModal"
+      @closeModal="openAddChannelModal = false"
+    ></add-channel-modal>
   </div>
 </template>
 <script>
   import TitleBar from "../components/TitleBar";
-  import AddProjectModal from "../components/modals/AddProject";
+  import AddChannelModal from "../components/modals/AddChannel";
   export default {
     data: () => {
       return {
-        openAddProjecModal: false,
+        openAddChannelModal: false,
         search: "",
         headers: [
           {
@@ -154,7 +154,7 @@
     },
     components: {
       "title-bar": TitleBar,
-      "add-project-modal": AddProjectModal,
+      "add-channel-modal": AddChannelModal,
     },
   };
 </script>

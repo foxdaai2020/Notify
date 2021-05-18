@@ -2,7 +2,7 @@
   <div>
     <title-bar serviceListFilter="true">Service List</title-bar>
     <div class="d-flex align-center ma-2">
-      <v-btn outlined color="Genoa" small @click="openAddProjecModal = true">
+      <v-btn outlined color="Genoa" small @click="openAddServiceModal = true">
         <v-icon left>
           mdi-plus-circle-outline
         </v-icon>
@@ -60,18 +60,24 @@
       :items="desserts"
       :search="search"
     ></v-data-table>
+    <add-service-modal
+      :openModal="openAddServiceModal"
+      @closeModal="openAddServiceModal = false"
+    ></add-service-modal>
   </div>
 </template>
 <script>
   import TitleBar from "../components/TitleBar";
+  import AddServiceModal from "../components/modals/AddService";
 
   export default {
     components: {
       "title-bar": TitleBar,
+      "add-service-modal": AddServiceModal,
     },
     data: () => {
       return {
-        openAddProjecModal: false,
+        openAddServiceModal: false,
         search: "",
         headers: [
           {
