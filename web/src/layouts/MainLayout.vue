@@ -5,9 +5,39 @@
         <v-list-item-title>
           <p class="project-title">Notify Service</p>
         </v-list-item-title>
-          <p class="project-user">admin
-            <v-icon dense>mdi-account-circle</v-icon>
-          </p>
+
+        <div class="project-user">
+          <v-menu offset-y style="width: 160px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="transparent"
+                v-bind="attrs"
+                v-on="on"
+                small
+                depressed
+                :ripple="false"
+              >
+                <p>admin
+                  <v-icon dense>mdi-account-circle</v-icon>
+                  <v-icon small>mdi-chevron-down</v-icon>
+                </p>
+              </v-btn>
+
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="(item, index) in items"
+                :key="index"
+              >
+                <v-list-item-title>
+                  <v-icon dense :color="item.color" style="padding-right:6px;">{{ item.icon }}</v-icon>
+                  {{ item.title }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
+
       </template>
 
       <v-divider></v-divider>
@@ -18,6 +48,7 @@
           :key="index"
           link
           :to="item.route"
+          :ripple="false"
         >
           <v-list-item-content>
             <v-list-item-title class="notify-item-title">{{ item.text }}</v-list-item-title>
@@ -37,6 +68,11 @@
   export default {
     data: () => {
       return {
+        items: [
+          { title: "admin", icon: "mdi-account", color: "Genoa" },
+          { title: "User Setting", icon: "mdi-cog-outline", color: "ChelseaCucumber" },
+          { title: "Log Out", icon: "mdi-logout-variant", color: "DarkRed" },
+        ],
         routers: [
           { text: "Project", route: "project" },
           { text: "Channel", route: "channel" },
@@ -67,13 +103,14 @@
 }
 
 .project-user {
+  padding-left: 16px;
   font-size: 14px;
-  padding-left: 24px;
+  width: 160px;
 }
 
 .notify-item-title {
   font-size: 16px !important;
-  padding: 8px 0 8px 28px;
+  padding: 8px 0 8px 24px;
   z-index: 2;
 }
 
@@ -111,4 +148,13 @@
   margin-left: 16px;
   background-color: white;
 }
+
+.v-btn:before {
+  opacity: 0 !important;
+}
+
+.v-ripple__container {
+  opacity: 0 !important;
+}
+
 </style>
