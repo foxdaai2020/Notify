@@ -11,6 +11,7 @@
           hide-details="auto"
           :style="{'min-height': '20px'}"
           class="mb-6"
+          v-model="username"
         ></v-text-field>
         <v-text-field
           outlined
@@ -18,6 +19,7 @@
           hide-details="auto"
           :style="{'min-height': '20px'}"
           class="mb-6"
+          v-model="password"
         >
         </v-text-field>
       </div>
@@ -26,11 +28,35 @@
         width="186px"
         height="38px"
         depressed
-      >登入</v-btn>
+        v-on:click="login()"
+      >登入
+      </v-btn>
     </div>
   </div>
 </div>
 </template>
+
+<script>
+export default{
+  data() {
+    return {
+      username: null,
+      password: null,
+      //link: { route : "/" }
+    }
+  },
+  methods: {
+    login() {
+      var u = this.username
+      var p = this.password
+      if (u && p) {
+        console.log(this);
+        this.$router.push({ path: '/' })
+      }
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 html, body {
@@ -86,5 +112,4 @@ html, body {
     }
   } 
 }
-
 </style>
