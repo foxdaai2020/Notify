@@ -6,9 +6,8 @@
     temporary
     class="d-flex modal"
     fixed
-    style="height: 100vh;"
   >
-    <v-card class="d-flex flex-column" style="flex: 1">
+    <v-card color="PattensBlue" class="d-flex flex-column" style="flex: 1">
       <v-card-title><slot name="title"></slot></v-card-title>
       <v-divider class="mb-4"></v-divider>
       <v-card-text class="d-flex flex-column" style="flex: 1">
@@ -24,18 +23,25 @@
 
 <script>
   export default {
-    props: ["openModal"]
+    props: ["openModal"],
   };
 </script>
 
 <style lang="scss">
-  .modal .v-navigation-drawer__content {
-    display: flex;
-
-    .v-card__text {
-      overflow: scroll;
-      .v-input {
-        flex: 0;
+  .modal {
+    .v-navigation-drawer__content {
+      display: flex;
+      .v-card__text {
+        overflow: scroll;
+        background: var(--v-PattensBlue);
+        .v-input {
+          background: var(--v-PattensBlue);
+          .v-input__slot {
+            margin-bottom: 0 !important;
+            background: #ffffff !important;
+          }
+          flex: 0;
+        }
       }
     }
   }
