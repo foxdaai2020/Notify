@@ -15,11 +15,15 @@
 </script>
 
 <style>
-body {
-  font-family: "Microsoft JhengHei";
-}
+  body {
+    font-family: "Microsoft JhengHei";
+  }
 
-a {
-  text-decoration: none;
-}
+  a {
+    text-decoration: none;
+  }
+
+  .v-btn {
+     text-transform:none !important;
+  }
 </style>
