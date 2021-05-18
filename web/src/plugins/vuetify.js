@@ -10,15 +10,20 @@ export default new Vuetify({
     },
     themes: {
       light: {
-        HummingBird: "#D6F0EA",
-        Genoa: "#358379",
-        PattensBlue: "#E9F4F6",
-        WhiteIce: "#F1F9F5",
-        ChelseaCucumber: "#B5B35D",
-        DarkRed: "#C21414",
         FountainBlue: "#59A9A9",
         White: "#FFFFFF",
-        // Aquamarine: ""
+        DarkRed: "#C21414",
+        ChelseaCucumber: "#B5B35D",
+        WhiteIce: "#F1F9F5",
+        PattensBlue: "#E9F4F6",
+        Genoa: "#358379",
+        HummingBird: "#D6F0EA",
+        Black: "#000000",
+        Ciinder: "#212529",
+        DimGray: "#696969",
+        DarkGray: "#9D9D9D",
+        LightGray: "#D3D3D3",
+        WhiteSmoke: "#F4F4F4"
       },
     },
   },

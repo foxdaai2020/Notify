@@ -55,7 +55,7 @@ html, body {
   left: 160px;
   width: 258px;
   height: 332px;
-  background-color: #F3F7F7;
+  background-color: WhiteSmoke;
   border-radius: 15px;
   text-align: center;
 }
