@@ -2,7 +2,11 @@
   <modal :openModal="openModal">
     <template v-slot:title>Add Project</template>
     <template v-slot:content>
+<<<<<<< HEAD
       * Project Name
+=======
+      <span>* Project Name</span>
+>>>>>>> modify modal style
       <v-text-field
         v-model="projectName"
         outlined
@@ -12,7 +16,11 @@
         @blur="$v.projectName.$touch()"
       ></v-text-field>
 
+<<<<<<< HEAD
       * Project Leader
+=======
+      <span>* Project Leader</span>
+>>>>>>> modify modal style
       <v-select
         v-model="projectLeaders"
         required
@@ -33,7 +41,11 @@
         </template>
       </v-select>
 
+<<<<<<< HEAD
       Project Crew(org,)
+=======
+      <span>Project Crew(org,)</span>
+>>>>>>> modify modal style
       <v-select :items="items" dense chips multiple attach outlined>
         <template v-slot:selection="{ item }">
           <v-chip small class="ma-1" color="HummingBird">
@@ -42,6 +54,7 @@
         </template>
       </v-select>
 
+<<<<<<< HEAD
       Cross-org. Crew
       <!-- <v-text-field outlined></v-text-field> -->
       <v-combobox persistent-hint small-chips multiple outlined dense></v-combobox>
@@ -50,6 +63,41 @@
       Client Contact
       <v-text-field outlined></v-text-field>
       Project Desc
+=======
+      <span>Cross-org. Crew</span>
+      <v-combobox
+        v-model="chips"
+        outlined
+        multiple
+        dense
+        :search-input.sync="search"
+        @keydown.enter="validUserName(search)"
+        @blur="validUserName(search)"
+      >
+        <template v-slot:selection="{ attrs, item, selected }">
+          <v-chip
+            color="HummingBird"
+            class="mt-1 mb-1"
+            small
+            :key="JSON.stringify(item)"
+            v-bind="attrs"
+            :input-value="selected"
+            close
+            @click:close="remove(item)"
+          >
+            {{ item }}
+          </v-chip>
+        </template>
+      </v-combobox>
+
+      <span>Client Owner</span>
+      <v-text-field outlined></v-text-field>
+
+      <span>Client Contact</span>
+      <v-text-field outlined></v-text-field>
+
+      <span>Project Desc</span>
+>>>>>>> modify modal style
       <v-text-field outlined></v-text-field>
     </template>
     <template v-slot:actions>
@@ -76,8 +124,15 @@
     props: ["openModal"],
     data: () => {
       return {
+<<<<<<< HEAD
         projectName: null,
         projectLeaders: [],
+=======
+        search: null,
+        projectName: null,
+        projectLeaders: [],
+        chips: [],
+>>>>>>> modify modal style
         items: [
           "小廢物",
           "中廢物",
@@ -110,9 +165,18 @@
       modal: Modal,
     },
     methods: {
+      validUserName(search) {
+        if (search === "234") {
+          this.search = "";
+        }
+      },
       submit() {
         this.$v.$touch();
+<<<<<<< HEAD
         console.log(this.projectLeaderErrors);
+=======
+
+>>>>>>> modify modal style
         if (
           this.projectNameErrors.length !== 0 ||
           this.projectLeaderErrors.length !== 0
@@ -129,6 +193,13 @@
         this.$v.$reset();
         this.projectName = null;
         this.projectLeaders = [];
+<<<<<<< HEAD
+=======
+      },
+      remove(item) {
+        this.chips.splice(this.chips.indexOf(item), 1);
+        this.chips = [...this.chips];
+>>>>>>> modify modal style
       },
     },
   };

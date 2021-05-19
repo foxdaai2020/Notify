@@ -14,9 +14,9 @@
         Project</v-btn
       >
       <v-spacer></v-spacer>
+      篩選:
       <v-text-field
         v-model="search"
-        label="Search"
         single-line
         hide-details
         outlined
@@ -171,7 +171,7 @@
 
     background: var(--v-White-base);
     .v-input__control .v-input__slot {
-      min-height: 20px;
+      min-height: 24px;
     }
   }
 </style>

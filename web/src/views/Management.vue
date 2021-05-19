@@ -2,25 +2,25 @@
   <div>
     <title-bar>Member Auth.</title-bar>
     <div class="d-flex align-center ma-2">
-      <v-btn class="mr-2" outlined color="Genoa" small>
+      <v-btn class="mr-2" outlined color="Genoa" small @click="openAddChannelModal = true">
         <v-icon left>
           mdi-download
         </v-icon>
         Template</v-btn
       >
-      <v-btn class="mr-2" outlined color="Genoa" small>
+      <v-btn class="mr-2" outlined color="Genoa" small @click="openAddChannelModal = true">
         <v-icon left>
           mdi-upload
         </v-icon>
         Ｕsers</v-btn
       >
-      <v-btn class="mr-2" outlined color="Genoa" small @click="openAddManagementOneUserModal = true">
+      <v-btn class="mr-2" outlined color="Genoa" small @click="openAddChannelModal = true">
         <v-icon left>
           mdi-plus-circle-outline
         </v-icon>
         User</v-btn
       >
-      <v-btn class="mr-2" outlined color="Genoa" small @click="openUpdateUserInfoModal = true">
+      <v-btn class="mr-2" outlined color="Genoa" small @click="openAddChannelModal = true">
         <v-icon left>
           mdi-square-edit-outline
         </v-icon>
@@ -41,26 +41,16 @@
       :items="desserts"
       :search="search"
     ></v-data-table>
-    <add-management-one-user-modal
-      :openModal="openAddManagementOneUserModal"
-      @closeModal="openAddManagementOneUserModal = false"
-    ></add-management-one-user-modal>
-    <update-user-info-modal
-      :openModal="openUpdateUserInfoModal"
-      @closeModal="openUpdateUserInfoModal = false"
-    ></update-user-info-modal>
   </div>
 </template>
 
 <script>
   import TitleBar from "../components/TitleBar";
-  import AddManagementOneUserModal from "../components/modals/AddManagementOneUser";
-  import UpdateUserInfoModal from '../components/modals/UpdateUserInfo.vue';
+  //import AddChannelModal from "../components/modals/AddChannel";
   export default {
     data: () => {
       return {
-        openAddManagementOneUserModal: false,
-        openUpdateUserInfoModal: false,
+        openAddChannelModal: false,
         search: "",
         headers: [
           {
@@ -160,8 +150,7 @@
     },
     components: {
       "title-bar": TitleBar,
-      "add-management-one-user-modal": AddManagementOneUserModal,
-      "update-user-info-modal": UpdateUserInfoModal,
+      //"add-channel-modal": AddChannelModal,
     },
   };
 </script>
