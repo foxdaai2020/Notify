@@ -38,7 +38,6 @@
             </v-list>
           </v-menu>
         </div>
-
       </template>
 
       <v-divider></v-divider>
@@ -62,13 +61,19 @@
         <router-view />
       </v-container>
     </v-main>
+    <user-dialog
+    :openUserDialog="openUserDialog"
+    @closeUserDialog="openUserDialog = false"
+    ></user-dialog>
   </div>
 </template>
 
 <script>
+  import UserDialog from "../components/dialogs/UserDialog";
   export default {
     data: () => {
       return {
+        openUserDialog: false,
         items: [
           { title: "admin", icon: "mdi-account", color: "Genoa" },
           { title: "User Setting", icon: "mdi-cog-outline", color: "ChelseaCucumber" },
@@ -82,13 +87,20 @@
         ],
       };
     },
+    components: {
+      "user-dialog": UserDialog,
+    },
     methods: {
       action(title) {
         if (title == "User Setting") {
           console.log('user')
+          this.openUserDialog = true
         } else if(title == "Log Out") {
           this.$router.push({ path: '/login' })
         }
+      },
+      closeUserDialog() {
+        this.openUserDialog = false
       }
     }
   };
@@ -100,11 +112,11 @@
 }
 
 .v-application .gradient{
-  background: linear-gradient(180deg, #BCE6D7 0%, rgba(255, 255, 255, 0) 100%), #3DBEBE !important; 
+  background: linear-gradient(180deg, #BCE6D7 0%, rgba(255, 255, 255, 0) 100%), #3DBEBE !important;
 }
 
 .v-main {
-  padding: 0 0 0 180px !important; 
+  padding: 0 0 0 180px !important;
 }
 
 .project-title {

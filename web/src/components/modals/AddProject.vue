@@ -2,23 +2,29 @@
   <modal :openModal="openModal">
     <template v-slot:title>Add Project</template>
     <template v-slot:content>
+      * Project Name
       <v-text-field
-        v-model="name"
+        v-model="projectName"
         outlined
-        label="* Project Name"
         required
-        :error-messages="nameErrors"
-        @input="$v.name.$touch()"
-        @blur="$v.name.$touch()"
+        :error-messages="projectNameErrors"
+        @input="$v.projectName.$touch()"
+        @blur="$v.projectName.$touch()"
       ></v-text-field>
+
+      * Project Leader
       <v-select
+        v-model="projectLeaders"
+        required
         dense
         chips
         multiple
         attach
         outlined
         :items="items"
-        label="* Project Leader"
+        :error-messages="projectLeaderErrors"
+        @change="$v.projectLeaders.$touch()"
+        @blur="$v.projectLeaders.$touch()"
       >
         <template v-slot:selection="{ item }">
           <v-chip small class="ma-1" color="HummingBird">
@@ -26,29 +32,33 @@
           </v-chip>
         </template>
       </v-select>
-      <v-select
-        :items="items"
-        dense
-        chips
-        multiple
-        attach
-        outlined
-        label="Project Crew(org,)"
-      >
+
+      Project Crew(org,)
+      <v-select :items="items" dense chips multiple attach outlined>
         <template v-slot:selection="{ item }">
           <v-chip small class="ma-1" color="HummingBird">
             <span>{{ item }}</span>
           </v-chip>
         </template>
       </v-select>
-      <v-text-field outlined label="Cross-org. Crew"></v-text-field>
-      <v-text-field outlined label="Client Owner"></v-text-field>
-      <v-text-field outlined label="Client Contact"></v-text-field>
-      <v-text-field outlined label="Project Desc"></v-text-field>
+
+      Cross-org. Crew
+      <!-- <v-text-field outlined></v-text-field> -->
+      <v-combobox persistent-hint small-chips multiple outlined dense></v-combobox>
+      Client Owner
+      <v-text-field outlined></v-text-field>
+      Client Contact
+      <v-text-field outlined></v-text-field>
+      Project Desc
+      <v-text-field outlined></v-text-field>
     </template>
     <template v-slot:actions>
-      <v-btn depressed @click="closeDialog">取消</v-btn>
-      <v-btn depressed @click="submit" color="FountainBlue White--text">確定</v-btn>
+      <v-btn depressed @click="closeDialog" color="DarkGray White--text"
+        >取消</v-btn
+      >
+      <v-btn depressed @click="submit" color="FountainBlue White--text"
+        >確定</v-btn
+      >
     </template>
   </modal>
 </template>
@@ -60,12 +70,14 @@
   export default {
     mixins: [validationMixin],
     validations: {
-      name: { required },
+      projectName: { required },
+      projectLeaders: { required },
     },
     props: ["openModal"],
     data: () => {
       return {
-        name: null,
+        projectName: null,
+        projectLeaders: [],
         items: [
           "小廢物",
           "中廢物",
@@ -79,10 +91,18 @@
       };
     },
     computed: {
-      nameErrors() {
+      projectNameErrors() {
         const errors = [];
-        if (!this.$v.name.$dirty) return errors;
-        !this.$v.name.required && errors.push("Name is required.");
+        if (!this.$v.projectName.$dirty) return errors;
+        !this.$v.projectName.required &&
+          errors.push("Project Name is required.");
+        return errors;
+      },
+      projectLeaderErrors() {
+        const errors = [];
+        if (!this.$v.projectLeaders.$dirty) return errors;
+        !this.$v.projectLeaders.required &&
+          errors.push("Project Leader is required");
         return errors;
       },
     },
@@ -92,6 +112,14 @@
     methods: {
       submit() {
         this.$v.$touch();
+        console.log(this.projectLeaderErrors);
+        if (
+          this.projectNameErrors.length !== 0 ||
+          this.projectLeaderErrors.length !== 0
+        )
+          return;
+        this.clear();
+        this.$emit("closeModal");
       },
       closeDialog() {
         this.clear();
@@ -99,7 +127,8 @@
       },
       clear() {
         this.$v.$reset();
-        this.name = null;
+        this.projectName = null;
+        this.projectLeaders = [];
       },
     },
   };
