@@ -54,6 +54,7 @@
           .v-select__slot {
             min-height: 32px;
             .v-select__selections {
+              font-size: 12px;
               min-height: 32px;
               input {
                 height: 24px;
