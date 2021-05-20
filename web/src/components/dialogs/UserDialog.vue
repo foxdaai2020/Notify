@@ -23,6 +23,7 @@
             <v-tab
               v-for="item in items"
               :key="item"
+              style="padding:15px;"
             >
               {{ item }}
             </v-tab>
@@ -104,7 +105,7 @@
 
 .card-outline {
   top: 10px;
-  width: 314px;
+  width: 313px;
   height: 368px;
   margin: auto;
   border: 1px solid Lightgray;
