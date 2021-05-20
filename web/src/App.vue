@@ -15,8 +15,8 @@
 </script>
 
 <style>
-  body {
-    font-family: "Microsoft JhengHei";
+  * {
+    font-family: "Microsoft JhengHei" !important;
   }
 
   a {
@@ -47,5 +47,9 @@
 
   .v-toolbar{
     box-shadow: none !important;
+  }
+
+  .v-input {
+    font-size: 12px !important;
   }
 </style>

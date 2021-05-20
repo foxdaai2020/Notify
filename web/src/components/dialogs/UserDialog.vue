@@ -5,12 +5,21 @@
     width="350px"
   >
 
-    <v-card height="500px">
+    <v-card height="560px">
       <v-toolbar>
           <v-icon color="DarkRed" class="mr-2">mdi-comment-account</v-icon>
           <v-toolbar-title style="font-size: 16px; color: #696969;">User Setting</v-toolbar-title>
-          <span style="position: absolute; height: 0px; left: 0px; right: 0px; top: 53px; border: 0.5px solid #D3D3D3;"></span>
-        <!-- <v-spacer></v-spacer> -->
+          <span style="position: absolute; height: 0px; left: 0px; right: 0px; top: 54px; border: 0.5px solid #F4F4F4;"></span>
+        <v-spacer></v-spacer>
+          <v-btn
+            color="transparent"
+            @click="closeDialog"
+            depressed
+            :ripple="false"
+            style="min-width:20px;padding:0px;"
+          >
+            <v-icon color="DarkGray" style="font-size: 20px">mdi-close</v-icon>
+          </v-btn>
         <template v-slot:extension>
           <v-tabs
             v-model="tab"
@@ -35,30 +44,80 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <p>
-              Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nunc sed turpis.
-            </p>
 
-            <p class="mb-0">
-              Donec venenatis vulputate lorem. Aenean viverra rhoncus pede. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. Fusce commodo aliquam arcu. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi.
-            </p>
+            <span class="tab-userinfo-title">User ID</span>
+            <v-text-field
+              filled
+              outlined
+              disabled
+              value="John Doe"
+              hide-details
+              class="mb-2"
+            ></v-text-field>
+            <span class="tab-userinfo-title">User Key</span>
+            <v-text-field
+              filled
+              outlined
+              disabled
+              value="John Doe"
+              hide-details
+              class="mb-2"
+            ></v-text-field>
+            <span class="tab-userinfo-title">User Name</span>
+            <v-text-field
+              filled
+              outlined
+              disabled
+              value="John Doe"
+              hide-details
+              class="mb-2"
+            ></v-text-field>
+            <span class="tab-userinfo-title">Nickname</span>
+            <v-text-field
+              filled
+              outlined
+              disabled
+              value="John Doe"
+              hide-details
+              class="mb-2"
+            ></v-text-field>
+            <span class="tab-userinfo-title">E-mail</span>
+            <v-text-field
+              filled
+              outlined
+              disabled
+              value="John Doe"
+              hide-details
+              class="mb-2"
+            ></v-text-field>
+            <span class="tab-userinfo-title">Role</span>
+            <v-text-field
+              filled
+              outlined
+              disabled
+              value="John Doe"
+              hide-details
+              class="mb-2"
+            ></v-text-field>
+
           </v-card-text>
         </v-card>
       </v-tab-item>
       <v-tab-item>
-        <v-card flat>
+        <v-card class="reset-forms">
           <v-card-text>
-            <p>
-              Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.
-            </p>
 
-            <p class="mb-0">
-              Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.
-            </p>
+            <span>Old Password</span>
+            <v-text-field outlined></v-text-field>
+            <span>New Password</span>
+            <v-text-field outlined></v-text-field>
+            <span>Confirm Password</span>
+            <v-text-field outlined></v-text-field>
+
           </v-card-text>
         </v-card>
 
-        <v-card-actions>
+        <!-- <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
             color="primary"
@@ -67,7 +126,15 @@
           >
             I accept
           </v-btn>
-        </v-card-actions>
+        </v-card-actions> -->
+        <v-card-actions class="reset-btns">
+          <v-btn depressed @click="closeDialog" color="DarkGray White--text"
+            >取消</v-btn
+          >
+          <v-btn depressed @click="closeDialog" color="FountainBlue White--text"
+            >確定</v-btn
+          >
+          </v-card-actions>
 
       </v-tab-item>
     </v-tabs-items>
@@ -82,6 +149,7 @@
     props: ["openUserDialog"],
     data () {
       return {
+        //resetmountes: false,
         tab: null,
         items: [
           'User Information', 'Reset Password',
@@ -94,7 +162,10 @@
       closeDialog() {
         this.$emit("closeUserDialog");
       },
-    }
+    },
+    // mounted() {
+    //   this.resetmountes = true;
+    // }
   }
 </script>
 
@@ -106,7 +177,7 @@
 .card-outline {
   top: 10px;
   width: 313px;
-  height: 368px;
+  height: 408px;
   margin: auto;
   border: 1px solid Lightgray;
 }
@@ -116,18 +187,42 @@
   padding-top: 10px;
 }
 
-.v-tab--active {
+.custom-tab-space .v-tab--active {
   border: 1px solid Lightgray;
   border-radius: 4px 4px 0 0;
 }
 
-.v-tab--active:hover {
+.custom-tab-space .v-tab--active:hover {
   border: 1px solid Lightgray;
   border-radius: 4px 4px 0 0;
 }
 
-.v-tab:before {
+.custom-tab-space .v-tab:before {
   border-radius: 4px 4px 0 0;
 }
 
+.v-btn:before {
+  opacity: 0 !important;
+}
+
+.v-ripple__container {
+  opacity: 0 !important;
+}
+
+/* .v-text-field__details {
+  margin: 0px !important;
+  padding: 0px !important;
+} */
+
+.tab-userinfo-title {
+  font-size: 14px;
+}
+
+.reset-forms {
+  height: 340px;
+}
+
+.reset-btns {
+  margin-left: 150px;
+}
 </style>
