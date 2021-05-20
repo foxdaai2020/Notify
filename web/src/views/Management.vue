@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar>Member Auth.</title-bar>
+    <title-bar>Hello Member Auth.</title-bar>
     <div class="d-flex align-center ma-2">
       <v-btn class="mr-2" outlined color="Genoa" small>
         <v-icon left>
