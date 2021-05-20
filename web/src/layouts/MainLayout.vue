@@ -120,6 +120,7 @@
 }
 
 .project-title {
+  font-weight: 400;
   font-size: 21px;
   padding: 24px 24px 6px 24px;
 }
@@ -134,6 +135,7 @@
   font-size: 16px !important;
   padding: 8px 0 8px 24px;
   z-index: 2;
+  font-weight: 400 !important;
 }
 
 .v-list-item--link:before {

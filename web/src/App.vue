@@ -24,6 +24,28 @@
   }
 
   .v-btn {
-     text-transform:none !important;
+    letter-spacing: 0px !important;
+    font-family: "Microsoft JhengHei";
+    text-transform: none !important;
+  }
+
+  .v-card {
+    font-family: "Microsoft JhengHei";
+  }
+
+  .v-dialog {
+    border-radius: 10px !important;
+  }
+
+  .v-tab {
+  text-transform: none !important;
+  }
+
+  .v-sheet {
+    box-shadow: none !important;
+  }
+
+  .v-toolbar{
+    box-shadow: none !important;
   }
 </style>
