@@ -108,11 +108,32 @@
           <v-card-text>
 
             <span>Old Password</span>
-            <v-text-field outlined></v-text-field>
+            <v-text-field
+            outlined
+            required
+            :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="() => (value = !value)"
+            :type="value ? 'password' : 'text'"
+            class="eye-peek"
+            ></v-text-field>
             <span>New Password</span>
-            <v-text-field outlined></v-text-field>
+            <v-text-field
+            outlined
+            required
+            :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="() => (value = !value)"
+            :type="value ? 'password' : 'text'"
+            class="eye-peek"
+            ></v-text-field>
             <span>Confirm Password</span>
-            <v-text-field outlined></v-text-field>
+            <v-text-field
+            outlined
+            required
+            :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="() => (value1 = !value1)"
+            :type="value1 ? 'password' : 'text'"
+            class="eye-peek"
+            ></v-text-field>
 
           </v-card-text>
         </v-card>
@@ -150,6 +171,8 @@
     data () {
       return {
         //resetmountes: false,
+        value: String,
+        value1: String,
         tab: null,
         items: [
           'User Information', 'Reset Password',
@@ -224,5 +247,9 @@
 
 .reset-btns {
   margin-left: 150px;
+}
+
+.eye-peek .v-input__append-inner {
+  margin-top: 4px !important;
 }
 </style>
