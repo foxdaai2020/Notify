@@ -2,12 +2,7 @@
   <div>
     <title-bar>Project Information</title-bar>
     <div class="d-flex align-center ma-2">
-      <v-btn
-        outlined
-        color="Genoa"
-        small
-        @click="openAddProjectModal = true"
-      >
+      <v-btn outlined color="Genoa" small @click="openAddProjectModal = true">
         <v-icon left>
           mdi-plus-circle-outline
         </v-icon>
@@ -25,134 +20,104 @@
     </div>
 
     <v-data-table
-      :headers="headers"
-      :items="desserts"
+      :headers="projectHeaders"
+      :items="projectData"
       :search="search"
-    ></v-data-table>
+    >
+      <template v-slot:item.lead>
+        <v-icon small>
+          mdi-close-circle
+        </v-icon>
+      </template>
+      <template v-slot:item.edit>
+        <v-icon small @click="openEditProjectModal = true">
+          mdi-square-edit-outline
+        </v-icon>
+      </template>
+      <template v-slot:item.delete>
+        <v-icon small>
+          mdi-delete
+        </v-icon>
+      </template>
+    </v-data-table>
 
     <title-bar>Member List</title-bar>
     <div class="d-flex align-center ma-2">
-    <v-spacer></v-spacer>
-    <v-text-field
-      v-model="search"
-      label="Search"
-      single-line
-      hide-details
-      outlined
-      style="max-width:150px"
-    ></v-text-field>
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        label="Search"
+        single-line
+        hide-details
+        outlined
+        style="max-width:150px"
+      ></v-text-field>
     </div>
     <v-data-table
-      :headers="headers"
-      :items="desserts"
+      :headers="memberHeaders"
+      :items="memberData"
       :search="search"
     ></v-data-table>
+
     <add-project-modal
       :openModal="openAddProjectModal"
       @closeModal="openAddProjectModal = false"
     ></add-project-modal>
+    <edit-project-modal
+      :openModal="openEditProjectModal"
+      @closeModal="openEditProjectModal = false"
+    ></edit-project-modal>
   </div>
 </template>
 <script>
   import TitleBar from "../components/TitleBar";
   import AddProjectModal from "../components/modals/AddProject";
+  import EditProjectModal from "../components/modals/EditProject";
   export default {
     data: () => {
       return {
         openAddProjectModal: false,
+        openEditProjectModal: false,
         search: "",
-        headers: [
+        projectHeaders: [
           {
-            text: "Dessert (100g serving)",
+            text: "Project. ID",
             align: "start",
-            value: "name",
+            value: "id",
           },
-          { text: "Calories", filterable: false, value: "calories" },
-          { text: "Fat (g)", value: "fat" },
-          { text: "Carbs (g)", value: "carbs" },
-          { text: "Protein (g)", value: "protein" },
-          { text: "Iron (%)", value: "iron" },
+          { text: "Proj. Name", filterable: false, value: "projectName" },
+          { text: "Leader", value: "leader" },
+          { text: "Desc.", value: "desc" },
+          { text: "#Crew", value: "crew" },
+          { text: "Client", value: "client" },
+          { text: "Lead", value: "lead"},
+          { text: "Creator", value: "creator" },
+          { text: "Edit", value: "edit" },
+          { text: "Delete", value: "delete" },
         ],
-        desserts: [
+        memberHeaders: [
+          { text: "User Name", value: "userName" },
+          { text: "Nickname", value: "nickname" },
+          { text: "Leader", value: "leader" },
+          { text: "Org", value: "org" },
+        ],
+        projectData: [
           {
-            name: "Frozen Yogurt",
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: "1%",
+            id: "1",
+            projectName: "projectName1",
+            leader: "leader1",
+            desc: "desc111",
+            crew: "crew1",
+            client: "client1%",
+            creator: "creator1%",
           },
+        ],
+        memberData: [
           {
-            name: "Ice cream sandwich",
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: "1%",
-          },
-          {
-            name: "Eclair",
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: "7%",
-          },
-          {
-            name: "Cupcake",
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: "8%",
-          },
-          {
-            name: "Gingerbread",
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: "16%",
-          },
-          {
-            name: "Jelly bean",
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: "0%",
-          },
-          {
-            name: "Lollipop",
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: "2%",
-          },
-          {
-            name: "Honeycomb",
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: "45%",
-          },
-          {
-            name: "Donut",
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: "22%",
-          },
-          {
-            name: "KitKat",
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: "6%",
+            userName: "userName1",
+            nickname: "nickname1",
+            leader: "leader1",
+            org: "org1",
           },
         ],
       };
@@ -160,6 +125,7 @@
     components: {
       "title-bar": TitleBar,
       "add-project-modal": AddProjectModal,
+      "edit-project-modal": EditProjectModal,
     },
   };
 </script>
