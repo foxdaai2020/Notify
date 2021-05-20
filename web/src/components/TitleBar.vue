@@ -23,7 +23,7 @@
         attach
       >
         <template v-slot:selection="{ item }">
-          <v-chip  small>
+          <v-chip small>
             <span>{{ item }}</span>
           </v-chip>
           <!-- <span v-if="index === 1" class="grey--text caption">
@@ -37,24 +37,21 @@
     <template v-if="issueTackerFilter">
       <v-checkbox label="Open" class="mr-4"></v-checkbox>
       <v-checkbox label="Close" class="mr-4"></v-checkbox>
-      <datetime-picker>
-        Start Time
-      </datetime-picker>
-      <datetime-picker>
-        End Time
-      </datetime-picker>
+      <span class="mr-2">Start Time</span>
+      <datetime-picker> </datetime-picker>
+
+      <span class="mr-2">End Time</span>
+      <datetime-picker></datetime-picker>
       <v-btn small outlined>Show</v-btn>
     </template>
 
     <template v-if="messageListFilter">
       <v-checkbox label="Fail Post" class="mr-4"></v-checkbox>
       <v-checkbox label="Normal Post" class="mr-4"></v-checkbox>
-      <datetime-picker>
-        Start Time
-      </datetime-picker>
-      <datetime-picker>
-        End Time
-      </datetime-picker>
+      <span class="mr-2">Start Time</span>
+      <datetime-picker> </datetime-picker>
+      <span class="mr-2">End Time</span>
+      <datetime-picker> </datetime-picker>
       <v-btn small outlined>Show</v-btn>
     </template>
   </div>

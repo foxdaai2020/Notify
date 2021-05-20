@@ -37,27 +37,9 @@
       <v-text-field outlined></v-text-field>
 
       <span>* Owner</span>
-      <!-- <v-select
-        v-model="projectLeaders"
-        required
-        dense
-        chips
-        multiple
-        attach
-        outlined
-        :items="items"
-        :error-messages="projectLeaderErrors"
-        @change="$v.projectLeaders.$touch()"
-        @blur="$v.projectLeaders.$touch()"
-      >
-        <template v-slot:selection="{ item }">
-          <v-chip small class="ma-1" color="HummingBird">
-            <span>{{ item }}</span>
-          </v-chip>
-        </template>
-      </v-select> -->
+      <v-text-field outlined disabled></v-text-field>
 
-      <span>*Enabled (Deafult: True)</span>
+      <span>* Enabled (Deafult: True)</span>
       <v-select
         v-model="enabled"
         required
@@ -71,7 +53,7 @@
       >
       </v-select>
 
-      <span>*Issue tracker (Default: False)</span>
+      <span>* Issue tracker (Default: False)</span>
       <v-select
         v-model="issueTracker"
         required
@@ -88,30 +70,22 @@
       <span>Service Description</span>
       <v-text-field outlined></v-text-field>
 
-      <!-- <span>* Service type</span>
+      <span>* Service type</span>
       <v-select
-        v-model="projectLeaders"
+        v-model="serviceType"
         required
         dense
-        chips
-        multiple
         attach
         outlined
-        :items="items"
-        :error-messages="projectLeaderErrors"
-        @change="$v.projectLeaders.$touch()"
-        @blur="$v.projectLeaders.$touch()"
+        :items="ServiceTypeItems"
+        :error-messages="serviceTypeErrors"
+        @change="$v.serviceType.$touch()"
+        @blur="$v.serviceType.$touch()"
       >
-        <template v-slot:selection="{ item }">
-          <v-chip small class="ma-1" color="HummingBird">
-            <span>{{ item }}</span>
-          </v-chip>
-        </template>
-      </v-select> -->
+      </v-select>
 
-      <datetime-picker>
-        Interval start time
-      </datetime-picker>
+      <span>Interval start time</span>
+      <datetime-picker style="margin-bottom:14px;"></datetime-picker>
 
       <span>Interval second</span>
       <v-text-field outlined></v-text-field>
@@ -159,6 +133,7 @@
       project: { required },
       enabled: { required },
       issueTracker: { required },
+      serviceType: { required },
       channels: { required },
     },
     data: () => {
@@ -171,8 +146,10 @@
         intervalStartTime: null,
         intervalSecond: null,
         messageBody: null,
+        serviceType: null,
         channels: [],
         booleanItems: [true, false],
+        ServiceTypeItems: ["delay forward", "dead notice", "direct forward"],
         items: [
           "小廢物",
           "中廢物",
@@ -204,6 +181,13 @@
         if (!this.$v.issueTracker.$dirty) return errors;
         !this.$v.issueTracker.required &&
           errors.push("Issue Tracker is required");
+        return errors;
+      },
+      serviceTypeErrors() {
+        const errors = [];
+        if (!this.$v.serviceType.$dirty) return errors;
+        !this.$v.serviceType.required &&
+          errors.push("Service Type is required");
         return errors;
       },
       channelErrors() {
