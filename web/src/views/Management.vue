@@ -20,7 +20,7 @@
         </v-icon>
         User</v-btn
       >
-      <v-btn class="mr-2" outlined color="Genoa" small @click="openUpdateUserInfoModal = true">
+      <v-btn class="mr-2" outlined color="Genoa" small @click="openEditOrganizationModal = true">
         <v-icon left>
           mdi-square-edit-outline
         </v-icon>
@@ -45,6 +45,10 @@
       :openModal="openAddManagementOneUserModal"
       @closeModal="openAddManagementOneUserModal = false"
     ></add-management-one-user-modal>
+    <edit-organization-modal
+      :openModal="openEditOrganizationModal"
+      @closeModal="openEditOrganizationModal = false"
+    ></edit-organization-modal>
     <update-user-info-modal
       :openModal="openUpdateUserInfoModal"
       @closeModal="openUpdateUserInfoModal = false"
@@ -55,11 +59,13 @@
 <script>
   import TitleBar from "../components/TitleBar";
   import AddManagementOneUserModal from "../components/modals/AddManagementOneUser";
+  import EditOrganizationModal from "../components/modals/EditOrganization";
   import UpdateUserInfoModal from '../components/modals/UpdateUserInfo.vue';
   export default {
     data: () => {
       return {
         openAddManagementOneUserModal: false,
+        openEditOrganizationModal: false,
         openUpdateUserInfoModal: false,
         search: "",
         headers: [
@@ -161,6 +167,7 @@
     components: {
       "title-bar": TitleBar,
       "add-management-one-user-modal": AddManagementOneUserModal,
+      "edit-organization-modal": EditOrganizationModal,
       "update-user-info-modal": UpdateUserInfoModal,
     },
   };

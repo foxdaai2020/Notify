@@ -1,24 +1,75 @@
 <template>
   <modal :openModal="openModal">
-    <template v-slot:title>Add Ｍanagement</template>
+    <template v-slot:title>Registration:One User</template>
     <template v-slot:content>
-      <v-text-field
-        v-model="name"
-        outlined
-        label="* Project Name"
+
+      <span>* Organization</span>
+      <v-select
+        v-model="organization"
         required
-        :error-messages="nameErrors"
-        @input="$v.name.$touch()"
-        @blur="$v.name.$touch()"
+        dense
+        attach
+        outlined
+        :items="OrganizationItems"
+        :error-messages="organizationErrors"
+        @change="$v.organization.$touch()"
+        @blur="$v.organization.$touch()"
+      >
+      </v-select>
+
+      <span>* Role</span>
+      <v-select
+        v-model="role"
+        required
+        dense
+        attach
+        outlined
+        :items="RoleItems"
+        :error-messages="roleErrors"
+        @change="$v.role.$touch()"
+        @blur="$v.role.$touch()"
+      >
+      </v-select>
+
+      <span>* User Name</span>
+      <v-text-field
+        v-model="userName"
+        outlined
+        required
+        :error-messages="userNameErrors"
+        @input="$v.userName.$touch()"
+        @blur="$v.userName.$touch()"
       ></v-text-field>
+
+      <span>* Email</span>
+      <v-text-field
+        v-model="email"
+        outlined
+        required
+        :error-messages="emailErrors"
+        @input="$v.email.$touch()"
+        @blur="$v.email.$touch()"
+      ></v-text-field>
+
+      <span>* Password</span>
+      <v-text-field
+        v-model="password"
+        outlined
+        required
+        :error-messages="passwordErrors"
+        @input="$v.password.$touch()"
+        @blur="$v.password.$touch()"
+      ></v-text-field>
+
+      <span>Projects</span>
       <v-select
+        v-model="projects"
         dense
         chips
         multiple
         attach
         outlined
         :items="items"
-        label="* Project Leader"
       >
         <template v-slot:selection="{ item }">
           <v-chip small class="ma-1" color="HummingBird">
@@ -26,14 +77,16 @@
           </v-chip>
         </template>
       </v-select>
+
+      <span>Channels</span>
       <v-select
-        :items="items"
+        v-model="channels"
         dense
         chips
         multiple
         attach
         outlined
-        label="Project Crew(org,)"
+        :items="items"
       >
         <template v-slot:selection="{ item }">
           <v-chip small class="ma-1" color="HummingBird">
@@ -41,14 +94,15 @@
           </v-chip>
         </template>
       </v-select>
-      <v-text-field outlined label="Cross-org. Crew"></v-text-field>
-      <v-text-field outlined label="Client Owner"></v-text-field>
-      <v-text-field outlined label="Client Contact"></v-text-field>
-      <v-text-field outlined label="Project Desc"></v-text-field>
+
     </template>
     <template v-slot:actions>
-      <v-btn depressed @click="closeDialog">取消</v-btn>
-      <v-btn depressed @click="submit" color="FountainBlue White--text">確定</v-btn>
+      <v-btn depressed @click="closeDialog" color="DarkGray White--text"
+        >取消</v-btn
+      >
+      <v-btn depressed @click="submit" color="FountainBlue White--text"
+        >確定</v-btn
+      >
     </template>
   </modal>
 </template>
@@ -60,12 +114,26 @@
   export default {
     mixins: [validationMixin],
     validations: {
-      name: { required },
+      organization: { required },
+      role: { required },
+      userName: { required },
+      email: { required },
+      password: { required },
     },
     props: ["openModal"],
     data: () => {
       return {
-        name: null,
+        search: null,
+        organization: null,
+        role: null,
+        userName: null,
+        email: null,
+        password: null,
+        projects: null,
+        channels: null,
+        chips: [],
+        OrganizationItems: ["org1", "org2", "org3"],
+        RoleItems: ["manager", "crew"],
         items: [
           "小廢物",
           "中廢物",
@@ -79,10 +147,39 @@
       };
     },
     computed: {
-      nameErrors() {
+      organizationErrors() {
         const errors = [];
-        if (!this.$v.name.$dirty) return errors;
-        !this.$v.name.required && errors.push("Name is required.");
+        if (!this.$v.organization.$dirty) return errors;
+        !this.$v.organization.required &&
+          errors.push("Organizations is required");
+        return errors;
+      },
+      roleErrors() {
+        const errors = [];
+        if (!this.$v.role.$dirty) return errors;
+        !this.$v.role.required &&
+          errors.push("Role is required");
+        return errors;
+      },
+      userNameErrors() {
+        const errors = [];
+        if (!this.$v.userName.$dirty) return errors;
+        !this.$v.userName.required &&
+          errors.push("User Name is required.");
+        return errors;
+      },
+      emailErrors() {
+        const errors = [];
+        if (!this.$v.email.$dirty) return errors;
+        !this.$v.email.required &&
+          errors.push("Email is required.");
+        return errors;
+      },
+      passwordErrors() {
+        const errors = [];
+        if (!this.$v.password.$dirty) return errors;
+        !this.$v.password.required &&
+          errors.push("Password is required.");
         return errors;
       },
     },
@@ -90,8 +187,23 @@
       modal: Modal,
     },
     methods: {
+      validUserName(search) {
+        if (search === "234") {
+          this.search = "";
+        }
+      },
       submit() {
         this.$v.$touch();
+        if (
+          this.userNameErrors.length !== 0 ||
+          this.organizationErrors.length !== 0 ||
+          this.roleErrors.length !== 0 ||
+          this.emailErrors.length != 0 ||
+          this.passwordErrors.length != 0
+        )
+          return;
+        this.clear();
+        this.$emit("closeModal");
       },
       closeDialog() {
         this.clear();
@@ -99,7 +211,13 @@
       },
       clear() {
         this.$v.$reset();
-        this.name = null;
+        this.userName = null;
+        this.organizations = [];
+        this.roles = [];
+      },
+      remove(item) {
+        this.chips.splice(this.chips.indexOf(item), 1);
+        this.chips = [...this.chips];
       },
     },
   };
