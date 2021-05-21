@@ -38,9 +38,21 @@
     </div>
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="managementData"
       :search="search"
-    ></v-data-table>
+    >
+      <template v-slot:item.edit>
+        <v-icon small @click="openUpdateUserInfoModal = true">
+          mdi-square-edit-outline
+        </v-icon>
+      </template>
+      <template v-slot:item.resetpassword>
+        <v-icon small @click="openResetPasswordModal = true">
+          mdi-lock-reset
+        </v-icon>
+      </template>
+
+    </v-data-table>
     <add-management-one-user-modal
       :openModal="openAddManagementOneUserModal"
       @closeModal="openAddManagementOneUserModal = false"
@@ -53,6 +65,10 @@
       :openModal="openUpdateUserInfoModal"
       @closeModal="openUpdateUserInfoModal = false"
     ></update-user-info-modal>
+    <reset-password-modal
+      :openModal="openResetPasswordModal"
+      @closeModal="openResetPasswordModal = false"
+    ></reset-password-modal>
   </div>
 </template>
 
@@ -61,105 +77,39 @@
   import AddManagementOneUserModal from "../components/modals/AddManagementOneUser";
   import EditOrganizationModal from "../components/modals/EditOrganization";
   import UpdateUserInfoModal from '../components/modals/UpdateUserInfo.vue';
+  import ResetPasswordModal from '../components/modals/ResetPassword.vue';
   export default {
     data: () => {
       return {
         openAddManagementOneUserModal: false,
         openEditOrganizationModal: false,
         openUpdateUserInfoModal: false,
+        openResetPasswordModal: false,
         search: "",
         headers: [
-          {
-            text: "Dessert (100g serving)",
-            align: "start",
-            value: "name",
-          },
-          { text: "Calories", filterable: false, value: "calories" },
-          { text: "Fat (g)", value: "fat" },
-          { text: "Carbs (g)", value: "carbs" },
-          { text: "Protein (g)", value: "protein" },
-          { text: "Iron (%)", value: "iron" },
+          { text: "User Name", align: "start", value: "userName",},
+          { text: "Nickname", value: "nickName" },
+          { text: "Org.", value: "org" },
+          { text: "Role", value: "role" },
+          { text: "Project Leader", value: "projectLeader" },
+          { text: "Default Ch.", value: "defaultCh" },
+          { text: "Registration Time.", value: "registrationTime" },
+          { text: "Activate", value: "activate" },
+          { text: "Edit", value: "edit", filterable: false },
+          { text: "Reset Password", value: "resetpassword", filterable: false },
         ],
-        desserts: [
+        managementData: [
           {
-            name: "Frozen Yogurt",
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: "1%",
-          },
-          {
-            name: "Ice cream sandwich",
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: "1%",
-          },
-          {
-            name: "Eclair",
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: "7%",
-          },
-          {
-            name: "Cupcake",
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: "8%",
-          },
-          {
-            name: "Gingerbread",
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: "16%",
-          },
-          {
-            name: "Jelly bean",
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: "0%",
-          },
-          {
-            name: "Lollipop",
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: "2%",
-          },
-          {
-            name: "Honeycomb",
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: "45%",
-          },
-          {
-            name: "Donut",
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: "22%",
-          },
-          {
-            name: "KitKat",
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: "6%",
+            userName: "AT0123",
+            nickName: "Superman",
+            org: "DAAI",
+            role: "manager",
+            projectLeader: "AI-project",
+            defaultCh: "AOI-ch",
+            registrationTime: "2021-05-01",
+            activate: "v",
+            edit: "edit",
+            resetPassword: "resetpassword",
           },
         ],
       };
@@ -169,6 +119,7 @@
       "add-management-one-user-modal": AddManagementOneUserModal,
       "edit-organization-modal": EditOrganizationModal,
       "update-user-info-modal": UpdateUserInfoModal,
+      "reset-password-modal": ResetPasswordModal,
     },
   };
 </script>
