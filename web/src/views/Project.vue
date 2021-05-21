@@ -34,8 +34,8 @@
           mdi-square-edit-outline
         </v-icon>
       </template>
-      <template v-slot:item.delete>
-        <v-icon small>
+      <template v-slot:item.delete="{ item }">
+        <v-icon small @click="deleteProject(item.id)">
           mdi-delete
         </v-icon>
       </template>
@@ -67,17 +67,44 @@
       :openModal="openEditProjectModal"
       @closeModal="openEditProjectModal = false"
     ></edit-project-modal>
+    <title-alert-dialog
+      :openDialog="openDeleteDialog"
+      @closeDialog="openDeleteDialog = false"
+    >
+      <template slot="title-text">Delete</template>
+      <template slot="content"
+        >Are you sure to delete {{ deleteProjectId }} ?</template
+      >
+      <template slot="action">
+        <v-btn
+          depressed
+          color="DarkGray White--text"
+          @click="openDeleteDialog = false"
+          >取消</v-btn
+        >
+        <v-btn
+          depressed
+          color="FountainBlue White--text"
+          @click="openDeleteDialog = false"
+          >確定</v-btn
+        >
+      </template>
+    </title-alert-dialog>
   </div>
 </template>
 <script>
   import TitleBar from "../components/TitleBar";
   import AddProjectModal from "../components/modals/AddProject";
   import EditProjectModal from "../components/modals/EditProject";
+  import TitleAlertDialog from "../components/dialogs/TitleAlertDialog";
+
   export default {
     data: () => {
       return {
         openAddProjectModal: false,
         openEditProjectModal: false,
+        openDeleteDialog: false,
+        deleteProjectId: null,
         search: "",
         projectHeaders: [
           {
@@ -90,7 +117,7 @@
           { text: "Desc.", value: "desc" },
           { text: "#Crew", value: "crew" },
           { text: "Client", value: "client" },
-          { text: "Lead", value: "lead"},
+          { text: "Lead", value: "lead" },
           { text: "Creator", value: "creator" },
           { text: "Edit", value: "edit" },
           { text: "Delete", value: "delete" },
@@ -126,6 +153,13 @@
       "title-bar": TitleBar,
       "add-project-modal": AddProjectModal,
       "edit-project-modal": EditProjectModal,
+      "title-alert-dialog": TitleAlertDialog,
+    },
+    methods: {
+      deleteProject(id) {
+        this.deleteProjectId = id;
+        this.openDeleteDialog = true;
+      },
     },
   };
 </script>
