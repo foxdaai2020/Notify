@@ -111,27 +111,27 @@
             <v-text-field
             outlined
             required
-            :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-            @click:append="() => (value = !value)"
-            :type="value ? 'password' : 'text'"
+            :append-icon="valueOldPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="() => (valueOldPassword = !valueOldPassword)"
+            :type="valueOldPassword ? 'password' : 'text'"
             class="eye-peek"
             ></v-text-field>
             <span>New Password</span>
             <v-text-field
             outlined
             required
-            :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-            @click:append="() => (value = !value)"
-            :type="value ? 'password' : 'text'"
+            :append-icon="valueNewPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="() => (valueNewPassword = !valueNewPassword)"
+            :type="valueNewPassword ? 'password' : 'text'"
             class="eye-peek"
             ></v-text-field>
             <span>Confirm Password</span>
             <v-text-field
             outlined
             required
-            :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
-            @click:append="() => (value1 = !value1)"
-            :type="value1 ? 'password' : 'text'"
+            :append-icon="valueConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="() => (valueConfirmPassword = !valueConfirmPassword)"
+            :type="valueConfirmPassword ? 'password' : 'text'"
             class="eye-peek"
             ></v-text-field>
 
@@ -171,8 +171,9 @@
     data () {
       return {
         //resetmountes: false,
-        value: String,
-        value1: String,
+        valueOldPassword: String,
+        valueNewPassword: String,
+        valueConfirmPassword: String,
         tab: null,
         items: [
           'User Information', 'Reset Password',
