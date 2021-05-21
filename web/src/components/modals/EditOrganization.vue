@@ -3,25 +3,80 @@
     <template v-slot:title>Organization</template>
     <template v-slot:content>
 
-    <!-- <v-container
-      class="px-0"
-      fluid
-    >
-      <v-radio-group v-model="radioGroup">
-          <v-radio label="Radio 1" value="radio-1" v-model="x">
-          </v-radio>
-          <div v-show="x == 'radio-1'">hi</div>
-          <v-radio label="Radio 2" value="radio-2" v-model="x">
-          </v-radio>
-          <div v-show="x == 'radio-2'">hello</div>
+      <v-radio-group
+        class="mt-0 radiogroup"
+        v-model="radioGroup"
+        style="background: #E9F4F6"
+      >
+        <v-radio label="Add Organization" value="radio-1" style="background:#E9F4F6">
+        </v-radio>
+        <div class="pb-3" v-show="radioGroup == 'radio-1'" style="background: #E9F4F6">
+          <span>* New Organization Name</span>
+          <v-text-field
+            v-model="addNewOrganizationName"
+            outlined
+            required
+            :error-messages="addNewOrganizationNameErrors"
+          ></v-text-field>
+          <span>Description</span>
+          <v-text-field
+            v-model="addDescription"
+            outlined
+            required
+            :error-messages="addDescriptionErrors"
+          ></v-text-field>
+        </div>
+
+        <v-radio label="Edit Description" value="radio-2" style="background: #E9F4F6">
+        </v-radio>
+        <div class="pb-3" v-show="radioGroup == 'radio-2'" style="background: #E9F4F6">
+          <span>* Select Organization</span>
+          <v-select
+            v-model="editSelectOrganization"
+            required
+            dense
+            attach
+            outlined
+            :items="EditSelectOrganizationItems"
+            :error-messages="editSelectOrganizationErrors"
+            @change="$v.editSelectOrganization.$touch()"
+            @blur="$v.editSelectOrganization.$touch()"
+          >
+          </v-select>
+          <span>* New Organization Name</span>
+          <v-text-field
+            v-model="editNewOrganizationName"
+            outlined
+            required
+            :error-messages="editNewOrganizationNameErrors"
+          ></v-text-field>
+          <span>Description</span>
+          <v-text-field
+            v-model="editDescription"
+            outlined
+            required
+            :error-messages="editDescriptionErrors"
+          ></v-text-field>
+        </div>
+
+        <v-radio label="Delete Organization" value="radio-3" style="background: #E9F4F6">
+        </v-radio>
+        <div class="pb-3" v-show="radioGroup == 'radio-3'" style="background: #E9F4F6">
+          <span>* Select Organization</span>
+          <v-select
+            v-model="deleteSelectOrganization"
+            required
+            dense
+            attach
+            outlined
+            :items="DeleteSelectOrganizationItems"
+            :error-messages="deleteSelectOrganizationErrors"
+            @change="$v.deleteSelectOrganization.$touch()"
+            @blur="$v.deleteSelectOrganization.$touch()"
+          >
+          </v-select>
+        </div>
       </v-radio-group>
-    </v-container> -->
-
-  <input type="radio" v-model="x" value="radio-1">number1
-  <div v-show="x == 'radio-1'">hi</div>
-  <input type="radio" v-model="x" value="radio-2">numbwe2
-  <div v-show="x == 'radio-2'">hello</div>
-
 
     </template>
     <template v-slot:actions>
@@ -42,7 +97,8 @@
   export default {
     mixins: [validationMixin],
     validations: {
-      organization: { required },
+      editSelectOrganization: { required },
+      deleteSelectOrganization: { required },
       role: { required },
       userName: { required },
       email: { required },
@@ -52,17 +108,20 @@
     data: () => {
       return {
         radioGroup: 1,
-        x: 'radio-1',
         search: null,
-        organization: null,
+        editSelectOrganization: null,
+        deleteSelectOrganization: null,
         role: null,
         userName: null,
-        email: null,
-        password: null,
+        addNewOrganizationName: null,
+        addDescription: null,
+        editNewOrganizationName: null,
+        editDescription: null,
         projects: null,
         channels: null,
         chips: [],
-        OrganizationItems: ["org1", "org2", "org3"],
+        EditSelectOrganizationItems: ["org1", "org2", "org3"],
+        DeleteSelectOrganizationItems: ["org1", "org2", "org3"],
         RoleItems: ["manager", "crew"],
         items: [
           "小廢物",
@@ -77,10 +136,33 @@
       };
     },
     computed: {
-      organizationErrors() {
+      addNewOrganizationNameErrors() {
+        console.log("addNewOrganizationNameErrors")
+        return [];
+      },
+      addDescriptionErrors() {
+        console.log("addDescriptionErrors")
+        return [];
+      },
+      editSelectOrganizationErrors() {
         const errors = [];
-        if (!this.$v.organization.$dirty) return errors;
-        !this.$v.organization.required &&
+        if (!this.$v.editSelectOrganization.$dirty) return errors;
+        !this.$v.editSelectOrganization.required &&
+          errors.push("Organizations is required");
+        return errors;
+      },
+      editNewOrganizationNameErrors() {
+        console.log("editNewOrganizationNameErrors")
+        return [];
+      },
+      editDescriptionErrors() {
+        console.log("editDescriptionErrors")
+        return [];
+      },
+      deleteSelectOrganizationErrors() {
+        const errors = [];
+        if (!this.$v.deleteSelectOrganization.$dirty) return errors;
+        !this.$v.deleteSelectOrganization.required &&
           errors.push("Organizations is required");
         return errors;
       },
@@ -110,7 +192,8 @@
       clear() {
         this.$v.$reset();
         this.userName = null;
-        this.organizations = [];
+        this.editSelectOrganizations = [];
+        this.deleteSelectOrganizations = [];
         this.roles = [];
       },
       remove(item) {
@@ -120,3 +203,17 @@
     },
   };
 </script>
+
+<style>
+/* .modal .v-navigation-drawer__content .v-card__text .v-input .v-input__slot {
+  background: #E9F4F6 !important;
+} */
+/* .radiogroup .v-input--radio-group--column .v-radio:not(:last-child):not(:only-child) {
+  padding-bottom: 8px;
+  margin-bottom: 0px !important;
+} */
+.v-input--radio-group--column .v-radio:not(:last-child):not(:only-child) {
+  padding-bottom: 8px !important;
+  margin-bottom: 0px !important;
+}
+</style>
