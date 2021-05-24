@@ -2,54 +2,230 @@
   <modal :openModal="openModal">
     <template v-slot:title>Update User</template>
     <template v-slot:content>
-      <v-text-field
-        v-model="name"
-        outlined
-        label="* Project Name"
+    <div v-if="isShow">
+      <span>* Organization</span>
+      <v-select
+        v-model="organization"
         required
-        :error-messages="nameErrors"
-        @input="$v.name.$touch()"
-        @blur="$v.name.$touch()"
+        dense
+        attach
+        outlined
+        :items="OrganizationItems"
+        :error-messages="organizationErrors"
+        @change="$v.organization.$touch()"
+        @blur="$v.organization.$touch()"
+      >
+      </v-select>
+
+      <span>User ID</span>
+      <v-text-field
+        filled
+        outlined
+        disabled
+        value="John Doe"
+        hide-details
+        class="mb-2"
       ></v-text-field>
+
+      <span>User Key</span>
+      <v-text-field
+        filled
+        outlined
+        disabled
+        value="John Doe"
+        hide-details
+        class="mb-2"
+      ></v-text-field>
+
+      <span>User Name</span>
+      <v-text-field
+        filled
+        outlined
+        disabled
+        value="John Doe"
+        hide-details
+        class="mb-2"
+      ></v-text-field>
+
+      <span>E-mail</span>
+      <v-text-field
+        filled
+        outlined
+        disabled
+        value="John Doe"
+        hide-details
+        class="mb-2"
+      ></v-text-field>
+
+      <span>* Role</span>
       <v-select
+        v-model="role"
+        required
         dense
-        chips
-        multiple
         attach
         outlined
-        :items="items"
-        label="* Project Leader"
+        :items="RoleItems"
+        :error-messages="roleErrors"
+        @change="$v.role.$touch()"
+        @blur="$v.role.$touch()"
       >
-        <template v-slot:selection="{ item }">
-          <v-chip small class="ma-1" color="HummingBird">
-            <span>{{ item }}</span>
-          </v-chip>
-        </template>
       </v-select>
+
+      <span>* Activate</span>
       <v-select
-        :items="items"
+        v-model="activate"
+        required
         dense
-        chips
-        multiple
         attach
         outlined
-        label="Project Crew(org,)"
+        :items="ActivateItems"
+        :error-messages="activateErrors"
+        @change="$v.activate.$touch()"
+        @blur="$v.activate.$touch()"
       >
-        <template v-slot:selection="{ item }">
-          <v-chip small class="ma-1" color="HummingBird">
-            <span>{{ item }}</span>
-          </v-chip>
-        </template>
       </v-select>
-      <v-text-field outlined label="Cross-org. Crew"></v-text-field>
-      <v-text-field outlined label="Client Owner"></v-text-field>
-      <v-text-field outlined label="Client Contact"></v-text-field>
-      <v-text-field outlined label="Project Desc"></v-text-field>
+    </div>
+
+    <div v-else>
+      <div class="short-input">
+        <span>User Name</span>
+        <v-text-field
+          filled
+          outlined
+          disabled
+          value="John"
+          hide-details
+          class="mb-2"
+        ></v-text-field>
+
+        <span>Role</span>
+        <v-text-field
+          filled
+          outlined
+          disabled
+          value="John"
+          hide-details
+          class="mb-2"
+        ></v-text-field>
+
+        <span>Activate</span>
+        <v-text-field
+          filled
+          outlined
+          disabled
+          value="John"
+          hide-details
+          class="mb-2"
+        ></v-text-field>
+      </div>
+
+      <span>Project Leader</span>
+      <v-icon>mdi-information</v-icon>
+      <v-btn x-small>
+        Show All
+      </v-btn>
+      <v-divider></v-divider>
+      <span>Project1</span>
+      <v-btn x-small>
+        D
+      </v-btn>
+      <v-btn x-small>
+        L
+      </v-btn>
+      <v-select
+        v-model="project1"
+        required
+        dense
+        attach
+        outlined
+        :items="Project1Items"
+        @change="$v.project1.$touch()"
+        @blur="$v.project1.$touch()"
+      >
+      </v-select>
+      <span>Project2</span>
+      <v-btn x-small>
+        D
+      </v-btn>
+      <v-btn x-small>
+        L
+      </v-btn>
+      <v-select
+        v-model="project2"
+        required
+        dense
+        attach
+        outlined
+        :items="Project2Items"
+        @change="$v.project2.$touch()"
+        @blur="$v.project2.$touch()"
+      >
+      </v-select>
+
+      <span>Default Channels</span>
+      <v-icon>mdi-information</v-icon>
+      <v-btn x-small>
+        Show All
+      </v-btn>
+      <v-divider></v-divider>
+      <span>Channel1</span>
+      <v-btn x-small>
+        D
+      </v-btn>
+      <v-btn x-small>
+        L
+      </v-btn>
+      <v-select
+        v-model="channel1"
+        required
+        dense
+        attach
+        outlined
+        :items="Channel1Items"
+        @change="$v.channel1.$touch()"
+        @blur="$v.channel1.$touch()"
+      >
+      </v-select>
+      <span>Channel2</span>
+      <v-btn x-small>
+        D
+      </v-btn>
+      <v-btn x-small>
+        L
+      </v-btn>
+      <v-select
+        v-model="channel2"
+        required
+        dense
+        attach
+        outlined
+        :items="Channel2Items"
+        @change="$v.channel2.$touch()"
+        @blur="$v.channel2.$touch()"
+      >
+      </v-select>
+
+    </div>
     </template>
     <template v-slot:actions>
-      <v-btn depressed @click="closeDialog">取消</v-btn>
-      <v-btn depressed @click="submit" color="FountainBlue White--text">確定</v-btn>
+      <div v-if="isShow">
+        <v-btn depressed @click="closeDialog" color="DarkGray White--text" class="mr-2"
+          >取消</v-btn
+        >
+        <v-btn depressed @click="nextDialog" color="FountainBlue White--text"
+          >下一步</v-btn
+        >
+      </div>
+      <div v-else>
+        <v-btn depressed @click="previousDialog" color="DarkGray White--text" class="mr-2"
+          >返回</v-btn
+        >
+        <v-btn depressed @click="closeDialog" color="FountainBlue White--text"
+          >確定</v-btn
+        >
+      </div>
     </template>
+
   </modal>
 </template>
 <script>
@@ -60,12 +236,28 @@
   export default {
     mixins: [validationMixin],
     validations: {
-      name: { required },
+      organization: { required },
+      role: { required },
+      activate: { required },
     },
     props: ["openModal"],
     data: () => {
       return {
-        name: null,
+        isShow: true,
+        organization: null,
+        role: null,
+        activate: null,
+        project1: null,
+        project2: null,
+        channel1: null,
+        channel2: null,
+        OrganizationItems: ["org1", "org2", "org3"],
+        RoleItems: ["manager", "crew"],
+        ActivateItems: ["true", "false"],
+        Project1Items: ["project1","project2"],
+        Project2Items: ["project1","project2"],
+        Channel1Items: ["channel1","channel2"],
+        Channel2Items: ["channel1","channel2"],
         items: [
           "小廢物",
           "中廢物",
@@ -79,10 +271,24 @@
       };
     },
     computed: {
-      nameErrors() {
+      organizationErrors() {
         const errors = [];
-        if (!this.$v.name.$dirty) return errors;
-        !this.$v.name.required && errors.push("Name is required.");
+        if (!this.$v.organization.$dirty) return errors;
+        !this.$v.organization.required &&
+          errors.push("Organizations is required");
+        return errors;
+      },
+      roleErrors() {
+        const errors = [];
+        if (!this.$v.role.$dirty) return errors;
+        !this.$v.role.required &&
+          errors.push("Role is required");
+        return errors;
+      },
+      activateErrors() {
+        const errors = [];
+        if (!this.$v.activate.$dirty) return errors;
+        !this.$v.activate.required && errors.push("Name is required.");
         return errors;
       },
     },
@@ -92,6 +298,14 @@
     methods: {
       submit() {
         this.$v.$touch();
+        if (
+          this.activateErrors.length !== 0 ||
+          this.organizationErrors.length !== 0 ||
+          this.roleErrors.length !== 0
+        )
+          return;
+        this.clear();
+        this.$emit("closeModal");
       },
       closeDialog() {
         this.clear();
@@ -101,6 +315,18 @@
         this.$v.$reset();
         this.name = null;
       },
+      nextDialog() {
+        this.isShow = false;
+      },
+      previousDialog() {
+        this.isShow = true;
+      }
     },
   };
 </script>
+<style scoped>
+.short-input {
+  width: 30px !important;
+  display: inline;
+}
+</style>

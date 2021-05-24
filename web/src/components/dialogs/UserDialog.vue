@@ -155,7 +155,7 @@
           <v-btn depressed @click="closeDialog" color="FountainBlue White--text"
             >確定</v-btn
           >
-          </v-card-actions>
+        </v-card-actions>
 
       </v-tab-item>
     </v-tabs-items>
