@@ -47,6 +47,7 @@ export default{
   },
   methods: {
     login() {
+      console.log("")
       var loginuser = this.username
       var loginpassword = this.password
       if (loginuser && loginpassword) {
