@@ -71,6 +71,7 @@
       :openDialog="openDeleteDialog"
       @closeDialog="openDeleteDialog = false"
     >
+      <template slot="title-icon">mdi-alert</template>
       <template slot="title-text">Delete</template>
       <template slot="content"
         >Are you sure to delete {{ deleteProjectId }} ?</template
@@ -85,11 +86,30 @@
         <v-btn
           depressed
           color="FountainBlue White--text"
-          @click="openDeleteDialog = false"
+          @click="
+            openDeleteDialog = false;
+            openConfirmDeleteDialog = true;
+          "
           >確定</v-btn
         >
       </template>
     </title-alert-dialog>
+    <alert-dialog
+      :openDialog="openConfirmDeleteDialog"
+      @closeDialog="openConfirmDeleteDialog = false"
+    >
+      <template slot="content"
+        >The project you want to delete is in service.</template
+      >
+      <template slot="action">
+        <v-btn
+          depressed
+          color="FountainBlue White--text"
+          @click="openConfirmDeleteDialog = false"
+          >確定</v-btn
+        >
+      </template>
+    </alert-dialog>
   </div>
 </template>
 <script>
@@ -97,6 +117,7 @@
   import AddProjectModal from "../components/modals/AddProject";
   import EditProjectModal from "../components/modals/EditProject";
   import TitleAlertDialog from "../components/dialogs/TitleAlertDialog";
+  import AlertDialog from "../components/dialogs/AlertDialog";
 
   export default {
     data: () => {
@@ -104,6 +125,7 @@
         openAddProjectModal: false,
         openEditProjectModal: false,
         openDeleteDialog: false,
+        openConfirmDeleteDialog: false,
         deleteProjectId: null,
         search: "",
         projectHeaders: [
@@ -154,6 +176,7 @@
       "add-project-modal": AddProjectModal,
       "edit-project-modal": EditProjectModal,
       "title-alert-dialog": TitleAlertDialog,
+      "alert-dialog": AlertDialog,
     },
     methods: {
       deleteProject(id) {

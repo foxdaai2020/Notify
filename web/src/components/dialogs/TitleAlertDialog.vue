@@ -2,7 +2,7 @@
   <v-dialog v-model="openDialog" width="500px">
     <v-card>
       <v-card-title>
-        <slot name="title-icon"></slot>
+        <v-icon class="mr-2"><slot name="title-icon"></slot></v-icon>
         <slot name="title-text"></slot>
       </v-card-title>
       <v-divider></v-divider>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <modal :openModal="openModal">
-      <template v-slot:title>Add Service</template>
+      <template v-slot:title>Edit Service</template>
       <template v-slot:content>
         <span>* Project</span>
         <v-select

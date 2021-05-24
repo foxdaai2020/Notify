@@ -20,10 +20,32 @@
     </div>
 
     <v-data-table
-      :headers="headers"
-      :items="desserts"
+      :headers="serviceHeaders"
+      :items="serviceData"
       :search="search"
-    ></v-data-table>
+    >
+      <template v-slot:item.serviceType>
+        <svg height="20" width="20">
+          <circle cx="10" cy="10" r="10" fill="red" />
+        </svg>
+      </template>
+
+      <template v-slot:item.postTest>
+        <v-icon small @click="openAPITestModal = true">
+          mdi-bug
+        </v-icon>
+      </template>
+      <template v-slot:item.edit>
+        <v-icon small @click="openEditServiceModal = true">
+          mdi-square-edit-outline
+        </v-icon>
+      </template>
+      <template v-slot:item.delete>
+        <v-icon small @click="openIllegalDialog = true">
+          mdi-delete
+        </v-icon>
+      </template>
+    </v-data-table>
 
     <title-bar issueTackerFilter="true">Issue Tracker</title-bar>
     <div class="d-flex align-center ma-2">
@@ -38,10 +60,16 @@
       ></v-text-field>
     </div>
     <v-data-table
-      :headers="headers"
-      :items="desserts"
+      :headers="issueTrackerHeaders"
+      :items="issueTrackerData"
       :search="search"
-    ></v-data-table>
+    >
+      <template v-slot:item.edit>
+        <v-icon small @click="openEditIssueModal = true">
+          mdi-square-edit-outline
+        </v-icon>
+      </template>
+    </v-data-table>
 
     <title-bar messageListFilter="true">Message List</title-bar>
     <div class="d-flex align-center ma-2">
@@ -56,121 +84,199 @@
       ></v-text-field>
     </div>
     <v-data-table
-      :headers="headers"
-      :items="desserts"
+      :headers="messageListHeaders"
+      :items="messageListData"
       :search="search"
     ></v-data-table>
+
     <add-service-modal
       :openModal="openAddServiceModal"
       @closeModal="openAddServiceModal = false"
     ></add-service-modal>
+    <edit-service-modal
+      :openModal="openEditServiceModal"
+      @closeModal="openEditServiceModal = false"
+    ></edit-service-modal>
+    <notify-api-test-modal
+      :openModal="openAPITestModal"
+      @closeModal="openAPITestModal = false"
+    ></notify-api-test-modal>
+    <edit-issue-modal
+      :openModal="openEditIssueModal"
+      @closeModal="openEditIssueModal = false"
+    ></edit-issue-modal>
+
+    <title-alert-dialog
+      :openDialog="openIllegalDialog"
+      @closeDialog="openIllegalDialog = false"
+    >
+      <template slot="title-icon">mdi-alert</template>
+      <template slot="title-text">Illegal action</template>
+      <template slot="content">
+        <p>
+          The Service you want to delete is in service for the past 30 days.
+        </p>
+        <p>*You can try to disable the service</p>
+      </template>
+      <template slot="action">
+        <v-btn
+          depressed
+          color="DarkGray White--text"
+          @click="openIllegalDialog = false"
+          >取消</v-btn
+        >
+        <v-btn
+          depressed
+          color="FountainBlue White--text"
+          @click="
+            openIllegalDialog = false;
+            openDeleteDialog = true;
+          "
+          >確定</v-btn
+        >
+      </template>
+    </title-alert-dialog>
+    <title-alert-dialog
+      :openDialog="openDeleteDialog"
+      @closeDialog="openDeleteDialog = false"
+    >
+      <template slot="title-icon">mdi-alert</template>
+      <template slot="title-text">Delete</template>
+      <template slot="content"
+        >Are you sure to delete {{ deleteServicetId }} ?</template
+      >
+      <template slot="action">
+        <v-btn
+          depressed
+          color="DarkGray White--text"
+          @click="openDeleteDialog = false"
+          >取消</v-btn
+        >
+        <v-btn
+          depressed
+          color="FountainBlue White--text"
+          @click="
+            openDeleteDialog = false;
+            openConfirmDeleteDialog = true;
+          "
+          >確定</v-btn
+        >
+      </template>
+    </title-alert-dialog>
+    <alert-dialog
+      :openDialog="openConfirmDeleteDialog"
+      @closeDialog="openConfirmDeleteDialog = false"
+    >
+      <template slot="content">Delete Service successfully.</template>
+      <template slot="action">
+        <v-btn
+          depressed
+          color="FountainBlue White--text"
+          @click="openConfirmDeleteDialog = false"
+          >確定</v-btn
+        >
+      </template>
+    </alert-dialog>
   </div>
 </template>
 <script>
   import TitleBar from "../components/TitleBar";
   import AddServiceModal from "../components/modals/AddService";
+  import NotifyAPITestModal from "../components/modals/NotifyAPITest";
+  import EditServiceModal from "../components/modals/EditService";
+  import EditIssueModal from "../components/modals/EditIssue";
+  import TitleAlertDialog from "../components/dialogs/TitleAlertDialog";
+  import AlertDialog from "../components/dialogs/AlertDialog";
 
   export default {
     components: {
       "title-bar": TitleBar,
       "add-service-modal": AddServiceModal,
+      "edit-service-modal": EditServiceModal,
+      "edit-issue-modal": EditIssueModal,
+      "notify-api-test-modal": NotifyAPITestModal,
+      "title-alert-dialog": TitleAlertDialog,
+      "alert-dialog": AlertDialog,
     },
     data: () => {
       return {
         openAddServiceModal: false,
+        openAPITestModal: false,
+        openEditServiceModal: false,
+        openDeleteDialog: false,
+        openIllegalDialog: false,
+        openConfirmDeleteDialog: false,
+        openEditIssueModal: false,
+        deleteServicetId: null,
         search: "",
-        headers: [
+        serviceHeaders: [
           {
-            text: "Dessert (100g serving)",
+            text: "Service ID",
             align: "start",
-            value: "name",
+            value: "id",
           },
-          { text: "Calories", filterable: false, value: "calories" },
-          { text: "Fat (g)", value: "fat" },
-          { text: "Carbs (g)", value: "carbs" },
-          { text: "Protein (g)", value: "protein" },
-          { text: "Iron (%)", value: "iron" },
+          { text: "Serv. Type", value: "serviceType" },
+          { text: "Serv. Desc.", value: "serviceDesc", align: " d-none" },
+          { text: "Project", value: "project" },
+          { text: "Tag", value: "tag" },
+          { text: "Channel", value: "channel", align: " d-none" },
+          { text: "Issue", value: "issue" },
+          //   { text: "Issue start time", value: "issueStartTime" },
+          { text: "#Issue (Open)", value: "booleanIssue" },
+          { text: "#Fail (In 7 Days)", value: "fail" },
+          { text: "Recent activity", value: "recentActivity" },
+          { text: "Owner", value: "owner" },
+          { text: "Post Test", value: "postTest" },
+          { text: "Edit", value: "edit" },
+          { text: "Delete", value: "delete" },
         ],
-        desserts: [
+        serviceData: [
           {
-            name: "Frozen Yogurt",
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: "1%",
+            id: "id1",
+            serviceType: "serviceType1",
+            serviceDesc: "serviceDesc1",
+            project: "project1",
+            tag: "tag1",
+            channel: "channel1",
+            issue: "issue1",
+            issueStartTime: "issueStartTime1",
+            booleanIssue: "issue",
+            fail: "fail",
+            recentActivity: "recentActivity",
+            owner: "owner",
           },
+        ],
+        issueTrackerHeaders: [
+          { text: "Message ID", value: "id" },
+          { text: "Msg. Cont.", value: "messageCont" },
+          { text: "Link to Channel", value: "linkToChannel" },
+          { text: "Status", value: "status" },
+          { text: "Updated Time", value: "updatedTime" },
+          { text: "Edit", value: "edit" },
+        ],
+        issueTrackerData: [
           {
-            name: "Ice cream sandwich",
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: "1%",
+            id: "11",
+            messageCont: "messageCont1",
+            linkToChannel: "linkToChannel1",
+            status: "Open",
+            updatedTime: "time",
           },
+        ],
+        messageListHeaders: [
+          { text: "Message ID", value: "id" },
+          { text: "Msg. Cont.", value: "messageCont" },
+          { text: "API Response Type", value: "type" },
+          { text: "API Response", value: "response" },
+          { text: "Updated Time", value: "updatedTime" },
+        ],
+        messageListData: [
           {
-            name: "Eclair",
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: "7%",
-          },
-          {
-            name: "Cupcake",
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: "8%",
-          },
-          {
-            name: "Gingerbread",
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: "16%",
-          },
-          {
-            name: "Jelly bean",
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: "0%",
-          },
-          {
-            name: "Lollipop",
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: "2%",
-          },
-          {
-            name: "Honeycomb",
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: "45%",
-          },
-          {
-            name: "Donut",
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: "22%",
-          },
-          {
-            name: "KitKat",
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: "6%",
+            id: "11",
+            messageCont: "messageCont1",
+            type: "type",
+            response: "response",
+            updatedTime: "time",
           },
         ],
       };
