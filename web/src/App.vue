@@ -38,14 +38,14 @@
   }
 
   .v-tab {
-  text-transform: none !important;
+    text-transform: none !important;
   }
 
   .v-sheet {
     box-shadow: none !important;
   }
 
-  .v-toolbar{
+  .v-toolbar {
     box-shadow: none !important;
   }
 
