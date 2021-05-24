@@ -8,7 +8,7 @@
         </v-icon>
         Template</v-btn
       >
-      <v-btn class="mr-2" outlined color="Genoa" small>
+      <v-btn class="mr-2" outlined color="Genoa" small @click="action()">
         <v-icon left>
           mdi-upload
         </v-icon>
@@ -53,6 +53,10 @@
       </template>
 
     </v-data-table>
+    <registration-dialog
+      :openRegistrationDialog="openRegistrationDialog"
+      @closeRegistrationDialog="openRegistrationDialog = false"
+    ></registration-dialog>
     <add-management-one-user-modal
       :openModal="openAddManagementOneUserModal"
       @closeModal="openAddManagementOneUserModal = false"
@@ -78,6 +82,7 @@
   import EditOrganizationModal from "../components/modals/EditOrganization";
   import UpdateUserInfoModal from '../components/modals/UpdateUserInfo.vue';
   import ResetPasswordModal from '../components/modals/ResetPassword.vue';
+  import RegistrationDialog from '../components/dialogs/RegistrationDialog.vue'
   export default {
     data: () => {
       return {
@@ -85,6 +90,7 @@
         openEditOrganizationModal: false,
         openUpdateUserInfoModal: false,
         openResetPasswordModal: false,
+        openRegistrationDialog: false,
         search: "",
         headers: [
           { text: "User Name", align: "start", value: "userName",},
@@ -120,7 +126,16 @@
       "edit-organization-modal": EditOrganizationModal,
       "update-user-info-modal": UpdateUserInfoModal,
       "reset-password-modal": ResetPasswordModal,
+      "registration-dialog": RegistrationDialog
     },
+    methods: {
+        action() {
+          this.openRegistrationDialog = true
+        },
+        closeRegistrationDialog() {
+          this.openRegistrationDialog = false
+        }
+    }
   };
 </script>
 
