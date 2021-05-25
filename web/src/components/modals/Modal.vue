@@ -83,6 +83,12 @@
               display: none;
             }
           }
+
+          &.v-input--is-disabled {
+            .v-input__slot { 
+              background: #F4F4F4;
+            }
+          }
         }
       }
     }
