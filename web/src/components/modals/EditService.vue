@@ -69,7 +69,7 @@
         </v-select>
 
         <span class="modal-span-title">Service Description</span>
-        <v-text-field outlined></v-text-field>
+        <v-textarea outlined auto-grow rows="2"></v-textarea>
 
         <span class="modal-span-title">* Service type</span>
         <v-select
@@ -112,17 +112,27 @@
             </v-chip>
           </template>
         </v-select>
-
-        <v-btn @click="openNotifyApiDialog = true"
+        <v-btn
+          outlined
+          color="FountainBlue White--text"
+          @click="openNotifyApiDialog = true"
+          class="mb-2"
           >Generate your notify-request sample</v-btn
         >
-        <v-btn @click="openNotifyApiDialog = true"
+        <v-btn
+          outlined
+          color="FountainBlue White--text"
+          @click="openNotifyApiDialog = true"
           >Generate your reg-request sample</v-btn
         >
       </template>
       <template v-slot:actions>
         <div class="modal-button-group">
-          <v-btn depressed @click="closeDialog" color="DarkGray White--text" class="mr-2"
+          <v-btn
+            depressed
+            @click="closeDialog"
+            color="DarkGray White--text"
+            class="mr-2"
             >取消</v-btn
           >
           <v-btn depressed @click="closeDialog" color="FountainBlue White--text"

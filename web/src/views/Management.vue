@@ -1,7 +1,7 @@
 <template>
   <div>
     <title-bar>Member Auth.</title-bar>
-    <div class="d-flex align-center ma-2">
+    <div class="d-flex align-center table-action">
       <v-btn class="mr-2" outlined color="Genoa" small>
         <v-icon left>
           mdi-download
@@ -27,9 +27,9 @@
         Org.</v-btn
       >
       <v-spacer></v-spacer>
+      <span class="mr-2 search-text">篩選</span>
       <v-text-field
         v-model="search"
-        label="Search"
         single-line
         hide-details
         outlined

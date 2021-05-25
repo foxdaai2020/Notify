@@ -1,7 +1,7 @@
 <template>
   <div>
     <title-bar serviceListFilter="true">Service List</title-bar>
-    <div class="d-flex align-center ma-2 ">
+    <div class="d-flex align-center table-action">
       <v-btn outlined color="Genoa" small @click="openAddServiceModal = true">
         <v-icon left>
           mdi-plus-circle-outline
@@ -9,11 +9,9 @@
         Service</v-btn
       >
       <v-spacer></v-spacer>
-      <span>Search</span>
+      <span class="mr-2 search-text">篩選</span>
       <v-text-field
         v-model="search"
-        label="Search"
-        single-line
         hide-details
         outlined
         style="max-width:150px"
@@ -49,11 +47,11 @@
     </v-data-table>
 
     <title-bar issueTackerFilter="true">Issue Tracker</title-bar>
-    <div class="d-flex align-center ma-2">
+    <div class="d-flex align-center table-action">
       <v-spacer></v-spacer>
+      <span class="mr-2 search-text">篩選</span>
       <v-text-field
         v-model="search"
-        label="Search"
         single-line
         hide-details
         outlined
@@ -73,11 +71,11 @@
     </v-data-table>
 
     <title-bar messageListFilter="true">Message List</title-bar>
-    <div class="d-flex align-center ma-2">
+    <div class="d-flex align-center table-action">
       <v-spacer></v-spacer>
+      <span class="mr-2 search-text">篩選</span>
       <v-text-field
         v-model="search"
-        label="Search"
         single-line
         hide-details
         outlined
@@ -230,6 +228,7 @@
           { text: "Post Test", value: "postTest" },
           { text: "Edit", value: "edit" },
           { text: "Delete", value: "delete" },
+          { text: "Detail", value: "detail" },
         ],
         serviceData: [
           {

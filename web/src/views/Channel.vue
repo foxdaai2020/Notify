@@ -2,7 +2,7 @@
   <div>
     <!-- =========== Channel List =========== -->
     <title-bar>Channel Information</title-bar>
-    <div class="d-flex align-center ma-2">
+    <div class="d-flex align-center table-action">
       <v-btn outlined color="Genoa" small @click="openAddChannelModal = true">
         <v-icon left>
           mdi-plus-circle-outline
@@ -10,9 +10,9 @@
         Channel</v-btn
       >
       <v-spacer></v-spacer>
+      <span class="mr-2 search-text">篩選</span>
       <v-text-field
         v-model="search"
-        label="Search"
         single-line
         hide-details
         outlined
@@ -43,11 +43,11 @@
 
     <!-- =========== Member List =========== -->
     <title-bar>Member List</title-bar>
-    <div class="d-flex align-center ma-2">
+    <div class="d-flex align-center table-action">
       <v-spacer></v-spacer>
+      <span class="mr-2 search-text">篩選</span>
       <v-text-field
         v-model="search"
-        label="Search"
         single-line
         hide-details
         outlined

@@ -1,9 +1,11 @@
 <template>
   <modal :openModal="openModal">
-    <template v-slot:title>Notify API Test</template>
+    <template v-slot:title>Service Detail</template>
     <template v-slot:content>
-      <span class="modal-span-title">User ID</span>
-      <v-text-field outlined></v-text-field>
+      <span class="modal-span-title">Channel</span>
+      <div>
+          <v-chip>AOI-ch</v-chip>
+      </div>
 
       <span class="modal-span-title">Service ID</span>
       <v-text-field outlined></v-text-field>
@@ -12,22 +14,11 @@
       <v-textarea outlined auto-grow rows="2"></v-textarea>
 
       <span class="modal-span-title">Post Test</span>
-      <v-radio-group class="mt-0 modal-selection">
-        <v-radio label="No: Execute Service"></v-radio>
-        <v-radio label="Yes: Direct to Channels (Default)"></v-radio>
-      </v-radio-group>
     </template>
     <template v-slot:actions>
       <div class="modal-button-group">
-        <v-btn
-          depressed
-          @click="closeDialog"
-          color="DarkGray White--text"
-          class="mr-2"
-          >取消</v-btn
-        >
-        <v-btn depressed @click="submit" color="FountainBlue White--text"
-          >確定</v-btn
+        <v-btn depressed @click="submit" color="DarkGray White--text"
+          >關閉</v-btn
         >
       </div>
     </template>

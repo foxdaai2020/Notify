@@ -39,7 +39,7 @@
           background: var(--v-PattensBlue);
           .v-input__slot {
             margin-bottom: 0 !important;
-            background: #ffffff !important;
+            background: #ffffff;
             min-height: 30px !important;
             input {
               height: 30px;
@@ -49,7 +49,6 @@
             fieldset {
               border: 1px solid !important;
             }
-
           }
           .v-text-field__details {
             margin-bottom: 0;
@@ -73,11 +72,10 @@
               align-self: center;
             }
 
-          .v-text-field--outlined.v-input--is-focused fieldset, .v-text-field--outlined.v-input--has-state fieldset {
-            border: 5px solid currentColor;
-          }
-
-
+            .v-text-field--outlined.v-input--is-focused fieldset,
+            .v-text-field--outlined.v-input--has-state fieldset {
+              border: 5px solid currentColor;
+            }
           }
 
           [role="combobox"] {
@@ -85,7 +83,7 @@
               display: none;
             }
           }
-         }
+        }
       }
     }
   }
@@ -97,5 +95,17 @@
   .modal-button-group {
     margin-right: 8px;
     margin-bottom: 8px;
+  }
+  .modal-selection.v-input--selection-controls {
+    .v-input__slot {
+      background: #e9f4f6!important;
+      .v-icon {
+        font-size: 16px;
+      }
+      label {
+        color: #212529;
+        font-size: 12px;
+      }
+    }
   }
 </style>
