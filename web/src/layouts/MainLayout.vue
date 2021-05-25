@@ -40,7 +40,7 @@
         </div>
       </template>
 
-      <v-divider></v-divider>
+      <v-divider class="divider-color"></v-divider>
 
       <v-list dense>
         <v-list-item

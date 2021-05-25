@@ -4,11 +4,11 @@
     <template v-slot:content>
 
       <v-radio-group
-        class="mt-0 radiogroup"
+        class="mt-0 radiogroup small-radio"
         v-model="radioGroup"
         style="background: #E9F4F6"
       >
-        <v-radio label="Add Organization" value="radio-1" style="background:#E9F4F6">
+        <v-radio class="radio-title" label="Add Organization" value="radio-1" style="background:#E9F4F6">
         </v-radio>
         <div class="pb-3" v-show="radioGroup == 'radio-1'" style="background: #E9F4F6">
           <span class="modal-span-title">* New Organization Name</span>
@@ -27,7 +27,7 @@
           ></v-text-field>
         </div>
 
-        <v-radio label="Edit Description" value="radio-2" style="background: #E9F4F6">
+        <v-radio class="radio-title" label="Edit Description" value="radio-2" style="background: #E9F4F6">
         </v-radio>
         <div class="pb-3" v-show="radioGroup == 'radio-2'" style="background: #E9F4F6">
           <span class="modal-span-title">* Select Organization</span>
@@ -59,7 +59,7 @@
           ></v-text-field>
         </div>
 
-        <v-radio label="Delete Organization" value="radio-3" style="background: #E9F4F6">
+        <v-radio class="radio-title" label="Delete Organization" value="radio-3" style="background: #E9F4F6">
         </v-radio>
         <div class="pb-3" v-show="radioGroup == 'radio-3'" style="background: #E9F4F6">
           <span class="modal-span-title">* Select Organization</span>
@@ -218,4 +218,23 @@
   padding-bottom: 8px !important;
   margin-bottom: 0px !important;
 }
+
+.radio-title .v-label {
+  font-size: 14px !important;
+}
+
+.small-radio label {
+  font-size: 14px;
+  padding-left: 0px;
+  margin-left: -4px;
+}
+
+.small-radio .v-icon {
+  font-size: 14px !important;
+}
+
+.v-input--selection-controls__ripple {
+  display: none;
+}
+
 </style>

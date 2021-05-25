@@ -91,6 +91,7 @@
   }
 
   .modal-span-title {
+    color: #696969;
     font-size: 13px;
   }
 

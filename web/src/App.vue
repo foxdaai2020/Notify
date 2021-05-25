@@ -52,4 +52,12 @@
   .v-input {
     font-size: 12px !important;
   }
+
+  .v-divider {
+    color: #D3D3D3;
+  }
+
+  .divider-color {
+    color: white;
+  }
 </style>

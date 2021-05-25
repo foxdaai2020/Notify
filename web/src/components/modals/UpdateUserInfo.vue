@@ -87,123 +87,154 @@
     </div>
 
     <div v-else>
-      <div class="short-input">
-        <span class="modal-span-title">User Name</span>
-        <v-text-field
-          filled
-          outlined
-          disabled
-          value="John"
-          hide-details
-          class="mb-2"
-        ></v-text-field>
+      <div class="short-input mb-2">
+        <div class="mr-1">
+          <span class="modal-span-title" style="width:86px;">User Name</span>
+          <v-text-field
+            filled
+            outlined
+            disabled
+            value="John"
+            hide-details
+            class="mb-2 diasbled-input"
+            style="width:86px;"
+          ></v-text-field>
+        </div>
 
-        <span class="modal-span-title">Role</span>
-        <v-text-field
-          filled
-          outlined
-          disabled
-          value="John"
-          hide-details
-          class="mb-2"
-        ></v-text-field>
+        <div class="mr-1">
+          <span class="modal-span-title" style="width:86px;">Role</span>
+          <v-text-field
+            filled
+            outlined
+            disabled
+            value="John"
+            hide-details
+            class="mb-2 diasbled-input"
+            style="width:86px;"
+          ></v-text-field>
+        </div>
 
-        <span class="modal-span-title">Activate</span>
-        <v-text-field
-          filled
-          outlined
-          disabled
-          value="John"
-          hide-details
-          class="mb-2"
-        ></v-text-field>
+        <div>
+          <span class="modal-span-title" style="width:86px;">Activate</span>
+          <v-text-field
+            filled
+            outlined
+            disabled
+            value="John"
+            hide-details
+            class="mb-2 diasbled-input"
+            style="width:86px;"
+          ></v-text-field>
+        </div>
       </div>
 
-      <span class="modal-span-title">Project Leader</span>
-      <v-icon>mdi-information</v-icon>
-      <v-btn x-small>
+      <span style="font-size:14px;">Project Leader</span>
+      <v-icon small style="padding:0 0 2px 2px; color: #59A9A9">mdi-information</v-icon>
+      <v-btn x-small class="show-all-btn" outlined color="Genoa">
         Show All
       </v-btn>
-      <v-divider></v-divider>
-      <span>Project1</span>
-      <v-btn x-small>
-        D
-      </v-btn>
-      <v-btn x-small>
-        L
-      </v-btn>
-      <v-select
-        v-model="project1"
-        required
-        dense
-        attach
-        outlined
-        :items="Project1Items"
-        @change="$v.project1.$touch()"
-        @blur="$v.project1.$touch()"
-      >
-      </v-select>
-      <span class="modal-span-title">Project2</span>
-      <v-btn x-small>
-        D
-      </v-btn>
-      <v-btn x-small>
-        L
-      </v-btn>
-      <v-select
-        v-model="project2"
-        required
-        dense
-        attach
-        outlined
-        :items="Project2Items"
-        @change="$v.project2.$touch()"
-        @blur="$v.project2.$touch()"
-      >
-      </v-select>
+      <v-divider class="divider-color mb-3"></v-divider>
 
-      <span class="modal-span-title">Default Channels</span>
-      <v-icon>mdi-information</v-icon>
-      <v-btn x-small>
+      <div class="update-user-area">
+        <span>Project1</span>
+        <span class="d-l-button-group">
+          <v-btn x-small outlined class="d-l-button mr-1" style="padding: 0 5px;" color="Genoa">
+            D
+          </v-btn>
+          <v-btn x-small outlined class="d-l-button" style="padding: 0 6px;" color="Genoa">
+            L
+          </v-btn>
+        </span>
+        <v-select
+          v-model="project1"
+          required
+          dense
+          attach
+          outlined
+          hide-details
+          class="mb-1"
+          :items="Project1Items"
+          @change="$v.project1.$touch()"
+          @blur="$v.project1.$touch()"
+        >
+        </v-select>
+        <span class="modal-span-title">Project2</span>
+        <span class="d-l-button-group">
+          <v-btn x-small outlined class="d-l-button mr-1" style="padding: 0 5px;" color="Genoa">
+            D
+          </v-btn>
+          <v-btn x-small outlined class="d-l-button" style="padding: 0 6px;" color="Genoa">
+            L
+          </v-btn>
+        </span>
+        <v-select
+          v-model="project2"
+          required
+          dense
+          attach
+          outlined
+          hide-details
+          class="mb-1"
+          :items="Project2Items"
+          @change="$v.project2.$touch()"
+          @blur="$v.project2.$touch()"
+        >
+        </v-select>
+      </div>
+
+      <span style="font-size:14px;">Default Channels</span>
+      <v-icon small style="padding:0 0 2px 2px; color: #59A9A9">mdi-information</v-icon>
+      <v-btn x-small class="show-all-btn" outlined color="Genoa">
         Show All
       </v-btn>
-      <v-divider></v-divider>
-      <span class="modal-span-title">Channel1</span>
-      <v-btn x-small>
-        D
-      </v-btn>
-      <v-btn x-small>
-        L
-      </v-btn>
-      <v-select
-        v-model="channel1"
-        required
-        dense
-        attach
-        outlined
-        :items="Channel1Items"
-        @change="$v.channel1.$touch()"
-        @blur="$v.channel1.$touch()"
-      >
-      </v-select>
-      <span class="modal-span-title">Channel2</span>
-      <v-btn x-small>
-        D
-      </v-btn>
-      <v-btn x-small>
-        L
-      </v-btn>
-      <v-select
-        v-model="channel2"
-        required
-        dense
-        attach
-        outlined
-        :items="Channel2Items"
-        @change="$v.channel2.$touch()"
-        @blur="$v.channel2.$touch()"
-      >
-      </v-select>
+      <v-divider class="divider-color mb-3"></v-divider>
+
+      <div class="update-user-area">
+        <span class="modal-span-title">Channel1</span>
+        <span class="d-l-button-group">
+          <v-btn x-small outlined class="d-l-button mr-1" style="padding: 0 5px;" color="Genoa">
+            D
+          </v-btn>
+          <v-btn x-small outlined class="d-l-button" style="padding: 0 6px;" color="Genoa">
+            L
+          </v-btn>
+        </span>
+        <v-select
+          v-model="channel1"
+          required
+          dense
+          attach
+          outlined
+          hide-details
+          class="mb-1"
+          :items="Channel1Items"
+          @change="$v.channel1.$touch()"
+          @blur="$v.channel1.$touch()"
+        >
+        </v-select>
+        <span class="modal-span-title">Channel2</span>
+        <span class="d-l-button-group">
+          <v-btn x-small outlined class="d-l-button mr-1" style="padding: 0 5px;" color="Genoa">
+            D
+          </v-btn>
+          <v-btn x-small outlined class="d-l-button" style="padding: 0 6px;" color="Genoa">
+            L
+          </v-btn>
+        </span>
+        <v-select
+          v-model="channel2"
+          required
+          dense
+          attach
+          outlined
+          hide-details
+          class="mb-1"
+          :items="Channel2Items"
+          @change="$v.channel2.$touch()"
+          @blur="$v.channel2.$touch()"
+        >
+        </v-select>
+      </div>
 
     </div>
     </template>
@@ -326,7 +357,30 @@
 </script>
 <style scoped>
 .short-input {
-  width: 30px !important;
-  display: inline;
+  display: flex;
+  justify-content: center;
+}
+
+.show-all-btn {
+  position: absolute;
+  right: 20px;
+  background: white;
+}
+
+.update-user-area {
+ height: 220px;
+ overflow: scroll;
+}
+
+.d-l-button {
+  min-width: 10px !important;
+  height: 20px !important;
+  margin-bottom: 5px !important;
+  background: white;
+}
+
+.d-l-button-group {
+  position: absolute;
+  right: 20px;
 }
 </style>
