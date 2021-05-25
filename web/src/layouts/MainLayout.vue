@@ -17,12 +17,12 @@
                 depressed
                 :ripple="false"
               >
-                <p>admin
+                <p>
+                  admin
                   <v-icon dense>mdi-account-circle</v-icon>
                   <v-icon small>mdi-chevron-down</v-icon>
                 </p>
               </v-btn>
-
             </template>
             <v-list>
               <v-list-item
@@ -31,7 +31,12 @@
                 @click="action(item.title)"
               >
                 <v-list-item-title>
-                  <v-icon dense :color="item.color" style="padding-right:6px;">{{ item.icon }}</v-icon>
+                  <v-icon
+                    dense
+                    :color="item.color"
+                    style="padding-right:6px;"
+                    >{{ item.icon }}</v-icon
+                  >
                   {{ item.title }}
                 </v-list-item-title>
               </v-list-item>
@@ -51,7 +56,9 @@
           :ripple="false"
         >
           <v-list-item-content>
-            <v-list-item-title class="notify-item-title">{{ item.text }}</v-list-item-title>
+            <v-list-item-title class="notify-item-title">{{
+              item.text
+            }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -62,8 +69,8 @@
       </v-container>
     </v-main>
     <user-dialog
-    :openUserDialog="openUserDialog"
-    @closeUserDialog="openUserDialog = false"
+      :openUserDialog="openUserDialog"
+      @closeUserDialog="openUserDialog = false"
     ></user-dialog>
   </div>
 </template>
@@ -76,7 +83,11 @@
         openUserDialog: false,
         items: [
           { title: "admin", icon: "mdi-account", color: "Genoa" },
-          { title: "User Setting", icon: "mdi-cog-outline", color: "ChelseaCucumber" },
+          {
+            title: "User Setting",
+            icon: "mdi-cog-outline",
+            color: "ChelseaCucumber",
+          },
           { title: "Log Out", icon: "mdi-logout-variant", color: "DarkRed" },
         ],
         routers: [
@@ -93,101 +104,107 @@
     methods: {
       action(title) {
         if (title == "User Setting") {
-          console.log('user')
-          this.openUserDialog = true
-        } else if(title == "Log Out") {
-          this.$router.push({ path: '/login' })
+          console.log("user");
+          this.openUserDialog = true;
+        } else if (title == "Log Out") {
+          this.$router.push({ path: "/login" });
         }
       },
       closeUserDialog() {
-        this.openUserDialog = false
-      }
-    }
+        this.openUserDialog = false;
+      },
+    },
   };
 </script>
 
 <style scoped lang="scss">
-.v-navigation-drawer {
-  width: 180px !important;
-}
-
-.v-application .gradient{
-  background: linear-gradient(180deg, #BCE6D7 0%, rgba(255, 255, 255, 0) 100%), #3DBEBE !important;
-}
-
-.v-main {
-  padding: 0 0 0 180px !important;
-}
-
-.project-title {
-  font-weight: 400;
-  font-size: 21px;
-  padding: 24px 24px 6px 24px;
-}
-
-.project-user {
-  padding-left: 16px;
-  font-size: 14px;
-  width: 160px;
-}
-
-.notify-item-title {
-  font-size: 16px !important;
-  padding: 8px 0 8px 24px;
-  z-index: 2;
-  font-weight: 400 !important;
-}
-
-.v-list-item--link:before {
-  margin-left: 16px;
-  background-color: white;
-}
-
-// .v-application--is-ltr .v-list.v-sheet .v-list-item, .v-application--is-ltr .v-list.v-sheet .v-list-item::before, .v-application--is-ltr .v-list.v-sheet .v-list-item > .v-ripple__container {
-//   border-bottom-left-radius: 32px !important;
-//   border-top-left-radius: 32px !important;
-// }
-
-// .theme--light.v-list-item:focus::before {
-//   opacity: 0.62;
-// }
-
-// .theme--light.v-list-item--active:hover::before,
-// .theme--light.v-list-item--active::before {
-//   opacity: 1;
-// }
-
-.v-btn:before {
-  opacity: 0 !important;
-}
-
-.v-ripple__container {
-  opacity: 0 !important;
-}
-
-.v-application--is-ltr .v-list.v-sheet .v-list-item {
-  &:before {
-    border-bottom-left-radius: 32px !important;
-    border-top-left-radius: 32px !important;
+  .v-navigation-drawer {
+    width: 180px !important;
   }
+
+  .v-application .gradient {
+    background: linear-gradient(180deg, #bce6d7 0%, rgba(255, 255, 255, 0) 100%),
+      #3dbebe !important;
+  }
+
+  .v-main {
+    padding: 0 0 0 180px !important;
+  }
+
+  .project-title {
+    font-weight: 400;
+    font-size: 21px;
+    padding: 24px 24px 6px 24px;
+  }
+
+  .project-user {
+    padding-left: 16px;
+    font-size: 14px;
+    width: 160px;
+  }
+
+  .notify-item-title {
+    font-size: 16px !important;
+    padding: 8px 0 8px 24px;
+    z-index: 2;
+    font-weight: 400 !important;
+  }
+
+  .v-list-item--link:before {
+    margin-left: 16px;
+    background-color: white;
+  }
+
+  .v-btn:before {
+    opacity: 0 !important;
+  }
+
   .v-ripple__container {
-    border-bottom-left-radius: 32px !important;
-    border-top-left-radius: 32px !important;
+    opacity: 0 !important;
   }
-}
 
-.theme--light.v-list-item:focus::before {
-  opacity: 0.62;
-}
-
-.theme--light.v-list-item--active {
-  &:before {
-    opacity: 1;
+  .v-application--is-ltr .v-list.v-sheet .v-list-item {
+    &:before {
+      border-bottom-left-radius: 32px !important;
+      border-top-left-radius: 32px !important;
+    }
+    .v-ripple__container {
+      border-bottom-left-radius: 32px !important;
+      border-top-left-radius: 32px !important;
+    }
   }
-  &:hover {
+
+  .theme--light.v-list-item:focus::before {
+    opacity: 0.62;
+  }
+
+  .theme--light.v-list-item--active {
     &:before {
       opacity: 1;
     }
+    &:hover {
+      &:before {
+        opacity: 1;
+      }
+    }
   }
-}
+</style>
+<style lang="scss">
+  .table-action {
+    margin: 20px 8px;
+
+    .search-text {
+      font-size: 12px;
+      color: var(--v-Black-base);
+    }
+    .v-input {
+      height: 28px;
+      .v-input__control {
+        height: 28px;
+      }
+    }
+  }
+  .v-input--selection-controls__ripple {
+    display: none;
+  }
 </style>

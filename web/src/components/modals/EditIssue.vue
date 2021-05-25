@@ -12,12 +12,17 @@
       <v-select dense attach outlined :items="items"> </v-select>
 
       <v-checkbox
+        class="modal-selection"
         label="Apply to previous message  ({message cnt})"
       ></v-checkbox>
     </template>
     <template v-slot:actions>
       <div class="modal-button-group">
-        <v-btn depressed @click="closeDialog" color="DarkGray White--text" class="mr-2"
+        <v-btn
+          depressed
+          @click="closeDialog"
+          color="DarkGray White--text"
+          class="mr-2"
           >取消</v-btn
         >
         <v-btn depressed @click="submit" color="FountainBlue White--text"
@@ -49,7 +54,7 @@
       },
       closeDialog() {
         this.$emit("closeModal");
-      }
+      },
     },
   };
 </script>
