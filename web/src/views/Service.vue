@@ -1,7 +1,7 @@
 <template>
   <div>
     <title-bar serviceListFilter="true">Service List</title-bar>
-    <div class="d-flex align-center ma-2">
+    <div class="d-flex align-center ma-2 ">
       <v-btn outlined color="Genoa" small @click="openAddServiceModal = true">
         <v-icon left>
           mdi-plus-circle-outline
@@ -9,6 +9,7 @@
         Service</v-btn
       >
       <v-spacer></v-spacer>
+      <span>Search</span>
       <v-text-field
         v-model="search"
         label="Search"
