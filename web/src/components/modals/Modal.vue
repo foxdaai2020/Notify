@@ -40,30 +40,44 @@
           .v-input__slot {
             margin-bottom: 0 !important;
             background: #ffffff !important;
-            min-height: 32px !important;
+            min-height: 30px !important;
             input {
-              height: 32px;
+              height: 30px;
               font-size: 12px;
             }
+
+            fieldset {
+              border: 1px solid !important;
+            }
+
           }
           .v-text-field__details {
             margin-bottom: 0;
           }
           flex: 0;
-
           .v-select__slot {
             min-height: 32px;
             .v-select__selections {
+              padding: 0px;
               font-size: 12px;
-              min-height: 32px;
+              min-height: 30px;
+              .v-select__selection--comma {
+                margin: 0px 4px 3px 0px;
+              }
               input {
-                height: 24px;
+                height: 12px;
               }
             }
             .v-input__append-inner {
               margin-top: 0px;
               align-self: center;
             }
+
+          .v-text-field--outlined.v-input--is-focused fieldset, .v-text-field--outlined.v-input--has-state fieldset {
+            border: 5px solid currentColor;
+          }
+
+
           }
 
           [role="combobox"] {
@@ -74,5 +88,14 @@
          }
       }
     }
+  }
+
+  .modal-span-title {
+    font-size: 13px;
+  }
+
+  .modal-button-group {
+    margin-right: 8px;
+    margin-bottom: 8px;
   }
 </style>

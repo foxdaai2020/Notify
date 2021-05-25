@@ -11,14 +11,14 @@
         <v-radio label="Add Organization" value="radio-1" style="background:#E9F4F6">
         </v-radio>
         <div class="pb-3" v-show="radioGroup == 'radio-1'" style="background: #E9F4F6">
-          <span>* New Organization Name</span>
+          <span class="modal-span-title">* New Organization Name</span>
           <v-text-field
             v-model="addNewOrganizationName"
             outlined
             required
             :error-messages="addNewOrganizationNameErrors"
           ></v-text-field>
-          <span>Description</span>
+          <span class="modal-span-title">Description</span>
           <v-text-field
             v-model="addDescription"
             outlined
@@ -30,7 +30,7 @@
         <v-radio label="Edit Description" value="radio-2" style="background: #E9F4F6">
         </v-radio>
         <div class="pb-3" v-show="radioGroup == 'radio-2'" style="background: #E9F4F6">
-          <span>* Select Organization</span>
+          <span class="modal-span-title">* Select Organization</span>
           <v-select
             v-model="editSelectOrganization"
             required
@@ -43,14 +43,14 @@
             @blur="$v.editSelectOrganization.$touch()"
           >
           </v-select>
-          <span>* New Organization Name</span>
+          <span class="modal-span-title">* New Organization Name</span>
           <v-text-field
             v-model="editNewOrganizationName"
             outlined
             required
             :error-messages="editNewOrganizationNameErrors"
           ></v-text-field>
-          <span>Description</span>
+          <span class="modal-span-title">Description</span>
           <v-text-field
             v-model="editDescription"
             outlined
@@ -62,7 +62,7 @@
         <v-radio label="Delete Organization" value="radio-3" style="background: #E9F4F6">
         </v-radio>
         <div class="pb-3" v-show="radioGroup == 'radio-3'" style="background: #E9F4F6">
-          <span>* Select Organization</span>
+          <span class="modal-span-title">* Select Organization</span>
           <v-select
             v-model="deleteSelectOrganization"
             required
@@ -80,12 +80,14 @@
 
     </template>
     <template v-slot:actions>
-      <v-btn depressed @click="closeDialog" color="DarkGray White--text"
-        >取消</v-btn
-      >
-      <v-btn depressed @click="submit" color="FountainBlue White--text"
-        >確定</v-btn
-      >
+      <div class="modal-button-group">
+        <v-btn depressed @click="closeDialog" color="DarkGray White--text" class="mr-2"
+          >取消</v-btn
+        >
+        <v-btn depressed @click="submit" color="FountainBlue White--text"
+          >確定</v-btn
+        >
+      </div>
     </template>
   </modal>
 </template>

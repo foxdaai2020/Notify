@@ -73,6 +73,34 @@
       :openModal="openResetPasswordModal"
       @closeModal="openResetPasswordModal = false"
     ></reset-password-modal>
+    <!-- <alert-dialog
+      :openDialog="openConfirmDeleteDialog"
+      @closeDialog="openConfirmDeleteDialog = false"
+    >
+      <template slot="content">Delete Service successfully.</template>
+      <template slot="action">
+        <v-btn
+          depressed
+          color="FountainBlue White--text"
+          @click="openConfirmDeleteDialog = false"
+          >確定</v-btn
+        >
+      </template>
+    </alert-dialog> -->
+    <!-- <alert-register-one-user-dialog
+      :openDialog="openRegisterOneUserDialog"
+      @closeDialog="openRegisterOneUserDialog = false"
+    >
+      <template slot="content">Register one user successfully.</template>
+      <template slot="action">
+        <v-btn
+          depressed
+          color="FountainBlue White--text"
+          @click="openRegisterOneUserDialog = false"
+          >確定</v-btn
+        >
+      </template>
+    </alert-register-one-user-dialog> -->
   </div>
 </template>
 
@@ -91,6 +119,7 @@
         openUpdateUserInfoModal: false,
         openResetPasswordModal: false,
         openRegistrationDialog: false,
+        openRegisterOneUserDialog: false,
         search: "",
         headers: [
           { text: "User Name", align: "start", value: "userName",},
@@ -126,7 +155,7 @@
       "edit-organization-modal": EditOrganizationModal,
       "update-user-info-modal": UpdateUserInfoModal,
       "reset-password-modal": ResetPasswordModal,
-      "registration-dialog": RegistrationDialog
+      "registration-dialog": RegistrationDialog,
     },
     methods: {
         action() {

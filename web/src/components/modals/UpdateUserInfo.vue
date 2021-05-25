@@ -3,7 +3,7 @@
     <template v-slot:title>Update User</template>
     <template v-slot:content>
     <div v-if="isShow">
-      <span>* Organization</span>
+      <span class="modal-span-title">* Organization</span>
       <v-select
         v-model="organization"
         required
@@ -17,7 +17,7 @@
       >
       </v-select>
 
-      <span>User ID</span>
+      <span class="modal-span-title">User ID</span>
       <v-text-field
         filled
         outlined
@@ -27,7 +27,7 @@
         class="mb-2"
       ></v-text-field>
 
-      <span>User Key</span>
+      <span class="modal-span-title">User Key</span>
       <v-text-field
         filled
         outlined
@@ -37,7 +37,7 @@
         class="mb-2"
       ></v-text-field>
 
-      <span>User Name</span>
+      <span class="modal-span-title">User Name</span>
       <v-text-field
         filled
         outlined
@@ -47,7 +47,7 @@
         class="mb-2"
       ></v-text-field>
 
-      <span>E-mail</span>
+      <span class="modal-span-title">E-mail</span>
       <v-text-field
         filled
         outlined
@@ -57,7 +57,7 @@
         class="mb-2"
       ></v-text-field>
 
-      <span>* Role</span>
+      <span class="modal-span-title">* Role</span>
       <v-select
         v-model="role"
         required
@@ -71,7 +71,7 @@
       >
       </v-select>
 
-      <span>* Activate</span>
+      <span class="modal-span-title">* Activate</span>
       <v-select
         v-model="activate"
         required
@@ -88,7 +88,7 @@
 
     <div v-else>
       <div class="short-input">
-        <span>User Name</span>
+        <span class="modal-span-title">User Name</span>
         <v-text-field
           filled
           outlined
@@ -98,7 +98,7 @@
           class="mb-2"
         ></v-text-field>
 
-        <span>Role</span>
+        <span class="modal-span-title">Role</span>
         <v-text-field
           filled
           outlined
@@ -108,7 +108,7 @@
           class="mb-2"
         ></v-text-field>
 
-        <span>Activate</span>
+        <span class="modal-span-title">Activate</span>
         <v-text-field
           filled
           outlined
@@ -119,7 +119,7 @@
         ></v-text-field>
       </div>
 
-      <span>Project Leader</span>
+      <span class="modal-span-title">Project Leader</span>
       <v-icon>mdi-information</v-icon>
       <v-btn x-small>
         Show All
@@ -143,7 +143,7 @@
         @blur="$v.project1.$touch()"
       >
       </v-select>
-      <span>Project2</span>
+      <span class="modal-span-title">Project2</span>
       <v-btn x-small>
         D
       </v-btn>
@@ -162,13 +162,13 @@
       >
       </v-select>
 
-      <span>Default Channels</span>
+      <span class="modal-span-title">Default Channels</span>
       <v-icon>mdi-information</v-icon>
       <v-btn x-small>
         Show All
       </v-btn>
       <v-divider></v-divider>
-      <span>Channel1</span>
+      <span class="modal-span-title">Channel1</span>
       <v-btn x-small>
         D
       </v-btn>
@@ -186,7 +186,7 @@
         @blur="$v.channel1.$touch()"
       >
       </v-select>
-      <span>Channel2</span>
+      <span class="modal-span-title">Channel2</span>
       <v-btn x-small>
         D
       </v-btn>
@@ -208,7 +208,7 @@
     </div>
     </template>
     <template v-slot:actions>
-      <div v-if="isShow">
+      <div v-if="isShow" class="modal-button-group">
         <v-btn depressed @click="closeDialog" color="DarkGray White--text" class="mr-2"
           >取消</v-btn
         >
@@ -216,7 +216,7 @@
           >下一步</v-btn
         >
       </div>
-      <div v-else>
+      <div v-else class="modal-button-group">
         <v-btn depressed @click="previousDialog" color="DarkGray White--text" class="mr-2"
           >返回</v-btn
         >

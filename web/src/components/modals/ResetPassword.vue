@@ -3,7 +3,7 @@
     <template v-slot:title>Reset Password</template>
     <template v-slot:content>
 
-      <span>* New Password</span>
+      <span class="modal-span-title">* New Password</span>
       <v-text-field
         outlined
         required
@@ -13,7 +13,7 @@
         class="eye-peek"
       ></v-text-field>
 
-      <span>* Confirm Password</span>
+      <span class="modal-span-title">* Confirm Password</span>
       <v-text-field
         outlined
         required
@@ -23,12 +23,14 @@
         class="eye-peek"      ></v-text-field>
     </template>
     <template v-slot:actions>
-      <v-btn depressed @click="closeDialog" color="DarkGray White--text"
-        >取消</v-btn
-      >
-      <v-btn depressed @click="submit" color="FountainBlue White--text"
-        >確定</v-btn
-      >
+      <div class="modal-button-group">
+        <v-btn depressed @click="closeDialog" color="DarkGray White--text" class="mr-2"
+          >取消</v-btn
+        >
+        <v-btn depressed @click="submit" color="FountainBlue White--text"
+          >確定</v-btn
+        >
+      </div>
     </template>
   </modal>
 </template>

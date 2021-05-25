@@ -2,7 +2,7 @@
   <modal :openModal="openModal">
     <template v-slot:title>Edit Channel</template>
     <template v-slot:content>
-      <span>* Channel Name</span>
+      <span class="modal-span-title">* Channel Name</span>
       <v-text-field
         v-model="channelName"
         outlined
@@ -12,10 +12,10 @@
         @blur="$v.channelName.$touch()"
       ></v-text-field>
 
-      <span>Channel Description</span>
+      <span class="modal-span-title">Channel Description</span>
       <v-text-field outlined></v-text-field>
 
-      <span>* Member@Org.</span>
+      <span class="modal-span-title">* Member@Org.</span>
       <v-select
         v-model="members"
         required
@@ -36,7 +36,7 @@
         </template>
       </v-select>
 
-      <span>Add by User Name (e.g. @Cross-Org.)</span>
+      <span class="modal-span-title">Add by User Name (e.g. @Cross-Org.)</span>
       <v-combobox
         v-model="chips"
         outlined
@@ -63,12 +63,14 @@
       </v-combobox>
     </template>
     <template v-slot:actions>
-      <v-btn depressed @click="closeDialog" color="DarkGray White--text"
-        >取消</v-btn
-      >
-      <v-btn depressed @click="submit" color="FountainBlue White--text"
-        >確定</v-btn
-      >
+      <div class="modal-button-group">
+        <v-btn depressed @click="closeDialog" color="DarkGray White--text" class="mr-2"
+          >取消</v-btn
+        >
+        <v-btn depressed @click="submit" color="FountainBlue White--text"
+          >確定</v-btn
+        >
+      </div>
     </template>
   </modal>
 </template>

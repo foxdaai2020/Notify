@@ -3,7 +3,7 @@
     <modal :openModal="openModal">
       <template v-slot:title>Edit Service</template>
       <template v-slot:content>
-        <span>* Project</span>
+        <span class="modal-span-title">* Project</span>
         <v-select
           v-model="project"
           required
@@ -17,7 +17,7 @@
         >
         </v-select>
 
-        <span>Tag</span>
+        <span class="modal-span-title">Tag</span>
         <v-select
           v-model="tags"
           dense
@@ -34,13 +34,13 @@
           </template>
         </v-select>
 
-        <span>Service ID</span>
+        <span class="modal-span-title">Service ID</span>
         <v-text-field outlined></v-text-field>
 
-        <span>* Owner</span>
+        <span class="modal-span-title">* Owner</span>
         <v-text-field outlined disabled></v-text-field>
 
-        <span>* Enabled (Deafult: True)</span>
+        <span class="modal-span-title">* Enabled (Deafult: True)</span>
         <v-select
           v-model="enabled"
           required
@@ -54,7 +54,7 @@
         >
         </v-select>
 
-        <span>* Issue tracker (Default: False)</span>
+        <span class="modal-span-title">* Issue tracker (Default: False)</span>
         <v-select
           v-model="issueTracker"
           required
@@ -68,10 +68,10 @@
         >
         </v-select>
 
-        <span>Service Description</span>
+        <span class="modal-span-title">Service Description</span>
         <v-text-field outlined></v-text-field>
 
-        <span>* Service type</span>
+        <span class="modal-span-title">* Service type</span>
         <v-select
           v-model="serviceType"
           required
@@ -85,14 +85,14 @@
         >
         </v-select>
 
-        <span>Interval start time</span>
+        <span class="modal-span-title">Interval start time</span>
         <datetime-picker style="margin-bottom:14px;"></datetime-picker>
 
-        <span>Interval second</span>
+        <span class="modal-span-title">Interval second</span>
         <v-text-field outlined></v-text-field>
-        <span>Message body</span>
+        <span class="modal-span-title">Message body</span>
         <v-text-field outlined></v-text-field>
-        <span>* Channels</span>
+        <span class="modal-span-title">* Channels</span>
         <v-select
           v-model="channels"
           required
@@ -121,12 +121,14 @@
         >
       </template>
       <template v-slot:actions>
-        <v-btn depressed @click="closeDialog" color="DarkGray White--text"
-          >取消</v-btn
-        >
-        <v-btn depressed @click="closeDialog" color="FountainBlue White--text"
-          >確定</v-btn
-        >
+        <div class="modal-button-group">
+          <v-btn depressed @click="closeDialog" color="DarkGray White--text" class="mr-2"
+            >取消</v-btn
+          >
+          <v-btn depressed @click="closeDialog" color="FountainBlue White--text"
+            >確定</v-btn
+          >
+        </div>
       </template>
     </modal>
     <title-alert-dialog
@@ -138,7 +140,7 @@
       <template slot="content">
         <p>
           "POST
-          http://10.62.163.224:7767/api/v1/notify/services/96?message={message}& 
+          http://10.62.163.224:7767/api/v1/notify/services/96?message={message}&
           HTTP/1.1"
         </p>
       </template>

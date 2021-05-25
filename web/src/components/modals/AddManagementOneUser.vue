@@ -1,116 +1,134 @@
 <template>
-  <modal :openModal="openModal">
-    <template v-slot:title>Registration:One User</template>
-    <template v-slot:content>
+  <div>
+    <modal :openModal="openModal">
+      <template v-slot:title>Registration:One User</template>
+      <template v-slot:content>
 
-      <span>* Organization</span>
-      <v-select
-        v-model="organization"
-        required
-        dense
-        attach
-        outlined
-        :items="OrganizationItems"
-        :error-messages="organizationErrors"
-        @change="$v.organization.$touch()"
-        @blur="$v.organization.$touch()"
-      >
-      </v-select>
+        <span class="modal-span-title">* Organization</span>
+        <v-select
+          v-model="organization"
+          required
+          dense
+          attach
+          outlined
+          :items="OrganizationItems"
+          :error-messages="organizationErrors"
+          @change="$v.organization.$touch()"
+          @blur="$v.organization.$touch()"
+        >
+        </v-select>
 
-      <span>* Role</span>
-      <v-select
-        v-model="role"
-        required
-        dense
-        attach
-        outlined
-        :items="RoleItems"
-        :error-messages="roleErrors"
-        @change="$v.role.$touch()"
-        @blur="$v.role.$touch()"
-      >
-      </v-select>
+        <span class="modal-span-title">* Role</span>
+        <v-select
+          v-model="role"
+          required
+          dense
+          attach
+          outlined
+          :items="RoleItems"
+          :error-messages="roleErrors"
+          @change="$v.role.$touch()"
+          @blur="$v.role.$touch()"
+        >
+        </v-select>
 
-      <span>* User Name</span>
-      <v-text-field
-        v-model="userName"
-        outlined
-        required
-        :error-messages="userNameErrors"
-        @input="$v.userName.$touch()"
-        @blur="$v.userName.$touch()"
-      ></v-text-field>
+        <span class="modal-span-title">* User Name</span>
+        <v-text-field
+          v-model="userName"
+          outlined
+          required
+          :error-messages="userNameErrors"
+          @input="$v.userName.$touch()"
+          @blur="$v.userName.$touch()"
+        ></v-text-field>
 
-      <span>* Email</span>
-      <v-text-field
-        v-model="email"
-        outlined
-        required
-        :error-messages="emailErrors"
-        @input="$v.email.$touch()"
-        @blur="$v.email.$touch()"
-      ></v-text-field>
+        <span class="modal-span-title">* Email</span>
+        <v-text-field
+          v-model="email"
+          outlined
+          required
+          :error-messages="emailErrors"
+          @input="$v.email.$touch()"
+          @blur="$v.email.$touch()"
+        ></v-text-field>
 
-      <span>* Password</span>
-      <v-text-field
-        v-model="password"
-        outlined
-        required
-        :error-messages="passwordErrors"
-        @input="$v.password.$touch()"
-        @blur="$v.password.$touch()"
-      ></v-text-field>
+        <span class="modal-span-title">* Password</span>
+        <v-text-field
+          v-model="password"
+          outlined
+          required
+          :error-messages="passwordErrors"
+          @input="$v.password.$touch()"
+          @blur="$v.password.$touch()"
+        ></v-text-field>
 
-      <span>Projects</span>
-      <v-select
-        v-model="projects"
-        dense
-        chips
-        multiple
-        attach
-        outlined
-        :items="items"
-      >
-        <template v-slot:selection="{ item }">
-          <v-chip small class="ma-1" color="HummingBird">
-            <span>{{ item }}</span>
-          </v-chip>
-        </template>
-      </v-select>
+        <span class="modal-span-title">Projects</span>
+        <v-select
+          v-model="projects"
+          dense
+          chips
+          multiple
+          attach
+          outlined
+          :items="items"
+        >
+          <template v-slot:selection="{ item }">
+            <v-chip small class="ma-1" color="HummingBird">
+              <span>{{ item }}</span>
+            </v-chip>
+          </template>
+        </v-select>
 
-      <span>Channels</span>
-      <v-select
-        v-model="channels"
-        dense
-        chips
-        multiple
-        attach
-        outlined
-        :items="items"
-      >
-        <template v-slot:selection="{ item }">
-          <v-chip small class="ma-1" color="HummingBird">
-            <span>{{ item }}</span>
-          </v-chip>
-        </template>
-      </v-select>
+        <span class="modal-span-title">Channels</span>
+        <v-select
+          v-model="channels"
+          dense
+          chips
+          multiple
+          attach
+          outlined
+          :items="items"
+        >
+          <template v-slot:selection="{ item }">
+            <v-chip small class="ma-1" color="HummingBird">
+              <span>{{ item }}</span>
+            </v-chip>
+          </template>
+        </v-select>
 
-    </template>
-    <template v-slot:actions>
-      <v-btn depressed @click="closeDialog" color="DarkGray White--text"
-        >取消</v-btn
-      >
-      <v-btn depressed @click="submit" color="FountainBlue White--text"
-        >確定</v-btn
-      >
-    </template>
-  </modal>
+      </template>
+      <template v-slot:actions>
+        <div class="modal-button-group">
+          <v-btn depressed @click="closeDialog" color="DarkGray White--text" class="mr-2"
+            >取消</v-btn
+          >
+          <v-btn depressed @click="submit" color="FountainBlue White--text"
+            >確定</v-btn
+          >
+        </div>
+      </template>
+    </modal>
+
+    <alert-register-one-user-dialog
+      :openDialog="openRegisterOneUserDialog"
+    >
+      <template slot="content">Register one user successfully.</template>
+      <template slot="action">
+        <v-btn
+          depressed
+          color="FountainBlue White--text"
+          @click="openRegisterOneUserDialog = false"
+          >確定</v-btn
+        >
+      </template>
+    </alert-register-one-user-dialog>
+  </div>
 </template>
 <script>
   import { validationMixin } from "vuelidate";
   import { required } from "vuelidate/lib/validators";
-
   import Modal from "./Modal";
+  import AlertDialog from "@/components/dialogs/AlertDialog";
   export default {
     mixins: [validationMixin],
     validations: {
@@ -131,6 +149,7 @@
         password: null,
         projects: null,
         channels: null,
+        openRegisterOneUserDialog: false,
         chips: [],
         OrganizationItems: ["org1", "org2", "org3"],
         RoleItems: ["manager", "crew"],
@@ -185,6 +204,7 @@
     },
     components: {
       modal: Modal,
+      "alert-register-one-user-dialog": AlertDialog,
     },
     methods: {
       validUserName(search) {
@@ -203,11 +223,19 @@
         )
           return;
         this.clear();
+        console.log('hi')
         this.$emit("closeModal");
+        this.openRegisterOneUserDialog = true
+        //this.openDialog();
       },
+      // openDialog() {
+      //   console.log('hey')
+      //   this.openRegisterOneUserDialog = true
+      // },
       closeDialog() {
         this.clear();
         this.$emit("closeModal");
+        this.openRegisterOneUserDialog = false
       },
       clear() {
         this.$v.$reset();

@@ -148,7 +148,7 @@
             I accept
           </v-btn>
         </v-card-actions> -->
-        <v-card-actions class="reset-btns">
+        <v-card-actions class="user-setting-reset-btns">
           <v-btn depressed @click="closeDialog" color="DarkGray White--text"
             >取消</v-btn
           >
@@ -246,7 +246,7 @@
   height: 340px;
 }
 
-.reset-btns {
+.user-setting-reset-btns {
   margin-left: 150px;
 }
 
