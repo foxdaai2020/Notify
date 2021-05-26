@@ -3,17 +3,15 @@
     <template v-slot:title>Service Detail</template>
     <template v-slot:content>
       <span class="modal-span-title">Channel</span>
-      <div>
-          <v-chip>AOI-ch</v-chip>
+      <div class="mb-3">
+          <v-chip small color="FountainBlue White--text">AOI-ch</v-chip>
       </div>
 
-      <span class="modal-span-title">Service ID</span>
-      <v-text-field outlined></v-text-field>
+      <span class="modal-span-title">Issue Start Time</span>
+      <div class="mb-3" style="color: #212529">2021-02-24 10:00:05</div>
 
-      <span class="modal-span-title">Message</span>
-      <v-textarea outlined auto-grow rows="2"></v-textarea>
-
-      <span class="modal-span-title">Post Test</span>
+      <span class="modal-span-title">Service Description</span>
+      <div class="mb-3" style="color: #212529">descdescdescdesc</div>
     </template>
     <template v-slot:actions>
       <div class="modal-button-group">

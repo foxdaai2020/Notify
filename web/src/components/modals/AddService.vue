@@ -71,7 +71,11 @@
         <span class="modal-span-title">Service Description</span>
         <v-textarea outlined auto-grow rows="2"></v-textarea>
 
-        <span class="modal-span-title">* Service type</span>
+        <span class="modal-span-title d-flex align-center">
+          * Service type
+          <v-icon small color="FountainBlue" class="ml-1">mdi-information</v-icon>
+        </span>
+
         <v-select
           v-model="serviceType"
           required
@@ -85,12 +89,23 @@
         >
         </v-select>
 
-        <span class="modal-span-title">Interval start time</span>
+        <span class="modal-span-title d-flex align-center"
+          >Interval start time
+          <v-icon small color="FountainBlue" class="ml-1">mdi-information</v-icon>
+        </span>
         <datetime-picker style="margin-bottom:14px;"></datetime-picker>
 
-        <span class="modal-span-title">Interval second</span>
+        <span class="modal-span-title d-flex align-center"
+          >Interval second
+          <v-icon small color="FountainBlue" class="ml-1">mdi-information</v-icon>
+        </span>
         <v-text-field outlined></v-text-field>
-        <span class="modal-span-title">Message body</span>
+        <span class="modal-span-title d-flex align-center"
+          >Message body
+          <v-icon small color="FountainBlue" @click="copyMessageBody" class="ml-1"
+            >mdi-information</v-icon
+          >
+        </span>
         <v-text-field outlined></v-text-field>
         <span class="modal-span-title">* Channels</span>
         <v-select
@@ -258,6 +273,15 @@
     methods: {
       closeDialog() {
         this.$emit("closeModal");
+      },
+      copyMessageBody() {
+        const el = document.createElement("textarea");
+        el.value = "[AOI][sid:{sid}] program not running, in: {time_interval_sec},  last update time:{last_update_time}";
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+        console.log("copyMessageBody");
       },
     },
   };

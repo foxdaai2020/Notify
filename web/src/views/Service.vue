@@ -23,10 +23,8 @@
       :items="serviceData"
       :search="search"
     >
-      <template v-slot:item.serviceType>
-        <svg height="20" width="20">
-          <circle cx="10" cy="10" r="10" fill="red" />
-        </svg>
+      <template v-slot:item.serviceType="{ item }">
+        <v-chip small>{{item.serviceType}}</v-chip>
       </template>
 
       <template v-slot:item.postTest>
@@ -42,6 +40,11 @@
       <template v-slot:item.delete>
         <v-icon small @click="openIllegalDialog = true">
           mdi-delete
+        </v-icon>
+      </template>
+      <template v-slot:item.detail>
+        <v-icon small @click="openServiceDetailModal = true">
+          mdi-magnify
         </v-icon>
       </template>
     </v-data-table>
@@ -104,6 +107,10 @@
       :openModal="openEditIssueModal"
       @closeModal="openEditIssueModal = false"
     ></edit-issue-modal>
+    <service-detail-modal
+      :openModal="openServiceDetailModal"
+      @closeModal="openServiceDetailModal = false"
+    ></service-detail-modal>
 
     <title-alert-dialog
       :openDialog="openIllegalDialog"
@@ -184,6 +191,7 @@
   import NotifyAPITestModal from "../components/modals/NotifyAPITest";
   import EditServiceModal from "../components/modals/EditService";
   import EditIssueModal from "../components/modals/EditIssue";
+  import ServiceDetailModal from "../components/modals/ServiceDetail";
   import TitleAlertDialog from "../components/dialogs/TitleAlertDialog";
   import AlertDialog from "../components/dialogs/AlertDialog";
 
@@ -194,6 +202,7 @@
       "edit-service-modal": EditServiceModal,
       "edit-issue-modal": EditIssueModal,
       "notify-api-test-modal": NotifyAPITestModal,
+      "service-detail-modal": ServiceDetailModal,
       "title-alert-dialog": TitleAlertDialog,
       "alert-dialog": AlertDialog,
     },
@@ -206,6 +215,7 @@
         openIllegalDialog: false,
         openConfirmDeleteDialog: false,
         openEditIssueModal: false,
+        openServiceDetailModal: false,
         deleteServicetId: null,
         search: "",
         serviceHeaders: [
