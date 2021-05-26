@@ -131,7 +131,7 @@
       <span style="font-size:14px;">Project Leader</span>
       <!-- <v-icon small style="padding:0 0 2px 2px; color: #59A9A9">mdi-information</v-icon> -->
 
-      <v-tooltip bottom>
+      <v-tooltip bottom max-width="300px">
         <template v-slot:activator="{ on, attrs }">
           <v-icon
             small
@@ -199,7 +199,7 @@
 
       <span style="font-size:14px;">Default Channels</span>
 
-      <v-tooltip bottom>
+      <v-tooltip bottom max-width="300px">
         <template v-slot:activator="{ on, attrs }">
           <v-icon
             small

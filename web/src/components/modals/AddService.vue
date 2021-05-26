@@ -73,7 +73,21 @@
 
         <span class="modal-span-title d-flex align-center">
           * Service type
-          <v-icon small color="FountainBlue" class="ml-1">mdi-information</v-icon>
+          <v-tooltip bottom max-width="300px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon
+                small
+                color="FountainBlue"
+                class="ml-1"
+                v-bind="attrs"
+                v-on="on"
+                :disabled="!serviceTypeTooltip"
+              >
+                mdi-information
+              </v-icon>
+            </template>
+            <span v-html="serviceTypeTooltip"></span>
+          </v-tooltip>
         </span>
 
         <v-select
@@ -82,7 +96,7 @@
           dense
           attach
           outlined
-          :items="ServiceTypeItems"
+          :items="serviceTypeItems"
           :error-messages="serviceTypeErrors"
           @change="$v.serviceType.$touch()"
           @blur="$v.serviceType.$touch()"
@@ -91,20 +105,62 @@
 
         <span class="modal-span-title d-flex align-center"
           >Interval start time
-          <v-icon small color="FountainBlue" class="ml-1">mdi-information</v-icon>
+          <v-tooltip bottom max-width="300px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon
+                small
+                color="FountainBlue"
+                class="ml-1"
+                v-bind="attrs"
+                v-on="on"
+                :disabled="!intervalStartTimeTooltip"
+              >
+                mdi-information
+              </v-icon>
+            </template>
+            <span>{{ intervalStartTimeTooltip }} </span>
+          </v-tooltip>
         </span>
         <datetime-picker style="margin-bottom:14px;"></datetime-picker>
 
         <span class="modal-span-title d-flex align-center"
           >Interval second
-          <v-icon small color="FountainBlue" class="ml-1">mdi-information</v-icon>
+          <v-tooltip bottom max-width="300px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon
+                small
+                color="FountainBlue"
+                class="ml-1"
+                v-bind="attrs"
+                v-on="on"
+                :disabled="!intervalSecondTooltip"
+              >
+                mdi-information
+              </v-icon>
+            </template>
+            <span>{{ intervalSecondTooltip }} </span>
+          </v-tooltip>
         </span>
         <v-text-field outlined></v-text-field>
+
         <span class="modal-span-title d-flex align-center"
           >Message body
-          <v-icon small color="FountainBlue" @click="copyMessageBody" class="ml-1"
-            >mdi-information</v-icon
-          >
+          <v-tooltip bottom max-width="300px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon
+                small
+                color="FountainBlue"
+                @click="copyMessageBody"
+                class="ml-1"
+                v-bind="attrs"
+                v-on="on"
+                :disabled="!messageBodyTooltip"
+              >
+                mdi-information
+              </v-icon>
+            </template>
+            <span v-html="messageBodyTooltip"></span>
+          </v-tooltip>
         </span>
         <v-text-field outlined></v-text-field>
         <span class="modal-span-title">* Channels</span>
@@ -194,6 +250,8 @@
   import TitleAlertDialog from "../dialogs/TitleAlertDialog";
   import DateTimePicker from "../DateTimePicker";
   import Modal from "./Modal";
+  import ServiceTypeMapping from "../../assets/type-mapping.json";
+
   export default {
     mixins: [validationMixin],
     validations: {
@@ -217,7 +275,7 @@
         serviceType: null,
         channels: [],
         booleanItems: [true, false],
-        ServiceTypeItems: ["delay forward", "dead notice", "direct forward"],
+        serviceTypeItems: ["delay forward", "dead notice", "direct forward"],
         items: [
           "小廢物",
           "中廢物",
@@ -232,6 +290,68 @@
     },
     props: ["openModal"],
     computed: {
+      intervalStartTimeTooltip() {
+        let result = null;
+        const { intervalStartTime } = ServiceTypeMapping;
+        switch (this.serviceType) {
+          case "delay forward":
+            result = intervalStartTime["delay forward"];
+            break;
+          case "dead notice":
+            result = intervalStartTime["dead notice"];
+            break;
+          default:
+            break;
+        }
+        return result;
+      },
+      intervalSecondTooltip() {
+        let result = null;
+        const { intervalSecond } = ServiceTypeMapping;
+        switch (this.serviceType) {
+          case "delay forward":
+            result = intervalSecond["delay forward"];
+            break;
+          case "dead notice":
+            result = intervalSecond["dead notice"];
+            break;
+          default:
+            break;
+        }
+        return result;
+      },
+      serviceTypeTooltip() {
+        let result = null;
+        const { serviceType } = ServiceTypeMapping;
+
+        switch (this.serviceType) {
+          case "direct forward":
+            result = serviceType["direct forward"];
+            break;
+          case "delay forward":
+            result = serviceType["delay forward"];
+            break;
+          case "dead notice":
+            result = serviceType["dead notice"];
+            break;
+          default:
+            break;
+        }
+        return result;
+      },
+      messageBodyTooltip() {
+        let result = null;
+        const { messageBody } = ServiceTypeMapping;
+
+        switch (this.serviceType) {
+          case "dead notice":
+            result = messageBody["dead notice"];
+            break;
+          default:
+            break;
+        }
+        return result;
+      },
       projectErrors() {
         const errors = [];
         if (!this.$v.project.$dirty) return errors;
@@ -276,12 +396,11 @@
       },
       copyMessageBody() {
         const el = document.createElement("textarea");
-        el.value = "[AOI][sid:{sid}] program not running, in: {time_interval_sec},  last update time:{last_update_time}";
+        el.value = ServiceTypeMapping.messageBody.copyText;
         document.body.appendChild(el);
         el.select();
         document.execCommand("copy");
         document.body.removeChild(el);
-        console.log("copyMessageBody");
       },
     },
   };

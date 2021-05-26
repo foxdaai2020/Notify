@@ -1,0 +1,19 @@
+{
+    "serviceType": {
+        "direct forward": "使用情境: 當發生 exception or error 時直接發送。<br/>---<br/>範例: 執行 api 當下馬上收到訊息",
+        "delay forward": "使用情境: 接收一段時間的 exception or error notice 的推播通知<br/>---<br/>範例: 從 interval start time (2021-10-10 08:00) 開始，若 interval_sec (3600s) 內有3則通知，09:00 會發送此3則通知",
+        "dead notice": "使用情境: 監控程式，當超過設定時間沒有執行紀錄時會收到推播通知<br/>---<br/>範例: 從 interval start time (2021-10-10 08:00) 開始，若 interval_sec (3600s) 內沒有執行 alive 訊息發送，則會推播 1 則 message_body 內容的訊息"
+    },
+    "messageBody": {
+        "dead notice": "觸發時系統代發 dead notice的格式。包含三個 {}，分別代表 <br/>1. sid {sid}, <br/>2. 更新頻率{time_interval_sec}<br/> 3. 上次更新時間 {last_update_time}",
+        "copyText": "[AOI][sid:{sid}] program not running, in: {time_interval_sec},  last update time:{last_update_time}"
+    },
+    "intervalStartTime": {
+        "delay forward": "系統開始接收user訊息的時間",
+        "dead notice": "開始監控的時間"
+    },
+    "intervalSecond": {
+        "delay forward": "檢查時間間隔，如每隔 3600 秒檢查一次程式有沒有 delay forward 訊息",
+        "dead notice": "監控時間間隔，如每隔 3600 秒檢查一次程式有沒有 alive 訊息"
+    }
+}
