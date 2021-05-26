@@ -6,11 +6,11 @@
         <slot name="title-text"></slot>
       </v-card-title>
       <v-divider></v-divider>
-      <v-card-text>
+      <v-card-text class="mt-5">
         <slot name="content" />
       </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
+      <v-card-actions class="pb-6 title-dialog-click-btn">
+
         <slot name="action" />
       </v-card-actions>
     </v-card>
@@ -21,3 +21,9 @@
     props: ["openDialog"],
   };
 </script>
+<style>
+.title-dialog-click-btn {
+  position: relative;
+  left: 320px;
+}
+</style>
