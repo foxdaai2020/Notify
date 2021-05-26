@@ -1,6 +1,6 @@
 <template>
   <div>
-    <modal :openModal="openModal">
+    <modal :openModal="openModal"  @closeModal="closeDialog()">
       <template v-slot:title>Add Service</template>
       <template v-slot:content>
         <span class="modal-span-title">* Project</span>

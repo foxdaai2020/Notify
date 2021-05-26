@@ -1,5 +1,5 @@
 <template>
-  <modal :openModal="openModal">
+  <modal :openModal="openModal"  @closeModal="closeDialog()">
     <template v-slot:title>Add Project</template>
     <template v-slot:content>
       <span class="modal-span-title">* Project Name</span>

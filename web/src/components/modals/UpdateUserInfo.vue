@@ -1,5 +1,5 @@
 <template>
-  <modal :openModal="openModal">
+  <modal :openModal="openModal" @closeModal="closeDialog()">
     <template v-slot:title>Update User</template>
     <template v-slot:content>
     <div v-if="isShow">

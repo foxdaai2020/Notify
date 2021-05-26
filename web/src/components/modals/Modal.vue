@@ -15,7 +15,6 @@
             depressed
             :ripple="false"
             class="close-modal-btn"
-            :closebtn="closeModal"
             @click="closeDialog()"
           >
             <v-icon color="DarkGray" style="font-size: 20px">mdi-close</v-icon>

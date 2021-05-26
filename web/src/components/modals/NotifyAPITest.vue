@@ -1,5 +1,5 @@
 <template>
-  <modal :openModal="openModal">
+  <modal :openModal="openModal" @closeModal="closeDialog()">
     <template v-slot:title>Notify API Test</template>
     <template v-slot:content>
       <span class="modal-span-title">User ID</span>

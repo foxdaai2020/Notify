@@ -1,6 +1,6 @@
 <template>
   <div>
-    <modal :openModal="openModal">
+    <modal :openModal="openModal"  @closeModal="closeDialog()">
       <template v-slot:title>Registration:One User</template>
       <template v-slot:content>
 
