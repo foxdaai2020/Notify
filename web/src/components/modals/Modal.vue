@@ -9,7 +9,18 @@
     fixed
   >
     <v-card color="PattensBlue" class="d-flex flex-column" style="flex: 1">
-      <v-card-title><slot name="title"></slot></v-card-title>
+      <v-card-title><slot name="title"></slot>
+          <v-btn
+            color="transparent"
+            depressed
+            :ripple="false"
+            class="close-modal-btn"
+            :closebtn="closeModal"
+            @click="closeDialog()"
+          >
+            <v-icon color="DarkGray" style="font-size: 20px">mdi-close</v-icon>
+          </v-btn>
+          </v-card-title>
       <v-divider></v-divider>
       <v-card-text class="d-flex flex-column" style="flex: 1">
         <slot name="content"></slot>
@@ -24,8 +35,14 @@
 
 <script>
   export default {
-    props: ["openModal"],
+    props: ["openModal","closeModal"],
+    methods: {
+      closeDialog() {
+        this.$emit("closeModal");
+      },
+    }
   };
+
 </script>
 
 <style lang="scss">
@@ -85,7 +102,7 @@
           }
 
           &.v-input--is-disabled {
-            .v-input__slot { 
+            .v-input__slot {
               background: #F4F4F4;
             }
           }
@@ -114,5 +131,12 @@
         font-size: 12px;
       }
     }
+  }
+
+  .close-modal-btn {
+    min-width: 20px !important;
+    padding: 0px!important;
+    right: 16px !important;
+    position: absolute !important;
   }
 </style>
