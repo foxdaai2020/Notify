@@ -21,7 +21,12 @@
             <v-icon color="DarkGray" style="font-size: 20px">mdi-close</v-icon>
           </v-btn>
         <template v-slot:extension>
-          <v-btn>Download Failed Users</v-btn>
+          <v-btn
+            outlined
+            color="FountainBlue White--text"
+            class="mb-2"
+            >Download Failed Users</v-btn
+          >
 
           <div style="position:absolute; top:50px; height: 380px; overflow: scroll;">
             <table>
@@ -199,7 +204,8 @@
 }
 
 .reset-btns {
-  margin-left: 150px;
+  margin-top: 380px;
+  margin-left: 176px;
 }
 
 .eye-peek .v-input__append-inner {
@@ -212,11 +218,8 @@ table, th, td {
 
 table {
   border-collapse: collapse;
-  width: 300px;
+  width: 316px;
   text-align: center;
 }
 
-.reset-btns {
-  margin-top: 380px;
-}
 </style>

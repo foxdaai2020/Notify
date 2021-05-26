@@ -129,7 +129,22 @@
       </div>
 
       <span style="font-size:14px;">Project Leader</span>
-      <v-icon small style="padding:0 0 2px 2px; color: #59A9A9">mdi-information</v-icon>
+      <!-- <v-icon small style="padding:0 0 2px 2px; color: #59A9A9">mdi-information</v-icon> -->
+
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon
+            small
+            v-bind="attrs"
+            v-on="on"
+            style="padding:0 0 2px 2px; color: #59A9A9"
+          >
+            mdi-information
+          </v-icon>
+        </template>
+        <span>Default setting: Show amount of leaders = 1</span>
+      </v-tooltip>
+
       <v-btn x-small class="show-all-btn" outlined color="Genoa">
         Show All
       </v-btn>
@@ -183,7 +198,21 @@
       </div>
 
       <span style="font-size:14px;">Default Channels</span>
-      <v-icon small style="padding:0 0 2px 2px; color: #59A9A9">mdi-information</v-icon>
+
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon
+            small
+            v-bind="attrs"
+            v-on="on"
+            style="padding:0 0 2px 2px; color: #59A9A9"
+          >
+            mdi-information
+          </v-icon>
+        </template>
+        <span>Default setting:  Show amount of members = 1 (Mattermost)</span>
+      </v-tooltip>
+
       <v-btn x-small class="show-all-btn" outlined color="Genoa">
         Show All
       </v-btn>
@@ -383,4 +412,10 @@
   position: absolute;
   right: 20px;
 }
+
+.v-tooltip__content {
+  font-size: 12px !important;
+  opacity: 1 !important;
+}
+
 </style>
