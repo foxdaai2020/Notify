@@ -1,7 +1,13 @@
 <template>
   <div class="datetimePicker">
     <!-- <span class="mr-2"><slot></slot></span> -->
-    <v-datetime-picker outlined hide-details>
+    <v-datetime-picker outlined hide-details color="#ffffff">
+      <template slot="actions" slot-scope="{ parent }">
+        <v-btn small class="mb-1" color="DarkGray White--text" depressed @click.native="parent.clearHandler"
+          >Cancel</v-btn
+        >
+        <v-btn small class="mb-1"  color="FountainBlue White--text" depressed @click="parent.okHandler">OK</v-btn>
+      </template>
       <template slot="dateIcon">
         <v-icon>mdi-calendar</v-icon>
       </template>
@@ -47,5 +53,10 @@
         max-height: 24px;
       }
     }
+  }
+  .v-picker .v-picker__title.primary {
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    background-color: #9dc9d2 !important;
   }
 </style>
