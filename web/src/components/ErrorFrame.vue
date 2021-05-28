@@ -12,7 +12,7 @@
         </h3>
       </div>
       <div>
-        <slot name="button">
+        <slot name="back-home-button">
           <v-btn outlined color="Genoa" class="error-btn-bgcolor" medium @click="backHome()">
           <v-icon left>
             mdi-logout-variant
