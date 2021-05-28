@@ -26,6 +26,12 @@ const routes = [
       { path: "/management", component: Management },
     ],
   },
+  {
+    path: '/404',
+    alias: '*',
+    name: 'notFound',
+    component: () => import(/* webpackChunkName: "notFound" */ '@/views/404.vue')
+  }
 ];
 
 const router = new VueRouter({
