@@ -30,7 +30,7 @@ const routes = [
     path: '/404',
     alias: '*',
     name: 'notFound',
-    component: () => import(/* webpackChunkName: "notFound" */ '@/views/404.vue')
+    component: () => import(/* webpackChunkName: "notFound" */ '@/views/ErrorPage.vue')
   }
 ];
 
