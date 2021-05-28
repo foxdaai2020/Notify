@@ -24,7 +24,7 @@
       :search="search"
     >
       <template v-slot:item.serviceType="{ item }">
-        <v-chip small>{{item.serviceType}}</v-chip>
+        <v-chip small>{{ item.serviceType }}</v-chip>
       </template>
 
       <template v-slot:item.postTest>
@@ -224,21 +224,21 @@
             align: "start",
             value: "id",
           },
-          { text: "Serv. Type", value: "serviceType" },
-          { text: "Serv. Desc.", value: "serviceDesc", align: " d-none" },
-          { text: "Project", value: "project" },
-          { text: "Tag", value: "tag" },
-          { text: "Channel", value: "channel", align: " d-none" },
-          { text: "Issue", value: "issue" },
+          { text: "Serv. Type", align: "center", value: "serviceType" },
+          { text: "Serv. Desc.", align: "center d-none", value: "serviceDesc" },
+          { text: "Project", align: "center", value: "project" },
+          { text: "Tag", align: "center", value: "tag" },
+          { text: "Channel", align: "center d-none", value: "channel" },
+          { text: "Issue", align: "center", value: "issue" },
           //   { text: "Issue start time", value: "issueStartTime" },
-          { text: "#Issue (Open)", value: "booleanIssue" },
-          { text: "#Fail (In 7 Days)", value: "fail" },
-          { text: "Recent activity", value: "recentActivity" },
-          { text: "Owner", value: "owner" },
-          { text: "Post Test", value: "postTest" },
-          { text: "Edit", value: "edit" },
-          { text: "Delete", value: "delete" },
-          { text: "Detail", value: "detail" },
+          { text: "#Issue (Open)", align: "center", value: "booleanIssue" },
+          { text: "#Fail (In 7 Days)", align: "center", value: "fail" },
+          { text: "Recent activity", align: "center", value: "recentActivity" },
+          { text: "Owner", align: "center", value: "owner" },
+          { text: "Post Test", align: "center", value: "postTest" },
+          { text: "Edit", align: "center", value: "edit" },
+          { text: "Delete", align: "center", value: "delete" },
+          { text: "Detail", align: "center", value: "detail" },
         ],
         serviceData: [
           {
@@ -257,12 +257,12 @@
           },
         ],
         issueTrackerHeaders: [
-          { text: "Message ID", value: "id" },
-          { text: "Msg. Cont.", value: "messageCont" },
-          { text: "Link to Channel", value: "linkToChannel" },
-          { text: "Status", value: "status" },
-          { text: "Updated Time", value: "updatedTime" },
-          { text: "Edit", value: "edit" },
+          { text: "Message ID", align: "center", value: "id" },
+          { text: "Msg. Cont.", align: "center", value: "messageCont" },
+          { text: "Link to Channel", align: "center", value: "linkToChannel" },
+          { text: "Status", align: "center", value: "status" },
+          { text: "Updated Time", align: "center", value: "updatedTime" },
+          { text: "Edit", align: "center", value: "edit" },
         ],
         issueTrackerData: [
           {
@@ -274,11 +274,11 @@
           },
         ],
         messageListHeaders: [
-          { text: "Message ID", value: "id" },
-          { text: "Msg. Cont.", value: "messageCont" },
-          { text: "API Response Type", value: "type" },
-          { text: "API Response", value: "response" },
-          { text: "Updated Time", value: "updatedTime" },
+          { text: "Message ID", align: "center", value: "id" },
+          { text: "Msg. Cont.", align: "center", value: "messageCont" },
+          { text: "API Response Type", align: "center", value: "type" },
+          { text: "API Response", align: "center", value: "response" },
+          { text: "Updated Time", align: "center", value: "updatedTime" },
         ],
         messageListData: [
           {

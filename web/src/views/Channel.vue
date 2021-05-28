@@ -158,7 +158,6 @@
         >
       </template>
     </alert-dialog>
-    
   </div>
 </template>
 <script>
@@ -183,18 +182,23 @@
         channelHeaders: [
           {
             text: "Ch. ID",
-            align: "start",
+            align: "center",
             value: "id",
           },
-          { text: "Ch. Name", filterable: false, value: "channelName" },
-          { text: "Ch. Token", value: "token" },
-          { text: "Desc.", value: "desc" },
-          { text: "Default Member", value: "booleanMember" },
-          { text: "#Default Member", value: "defaultMember" },
-          { text: "#Member", value: "member" },
-          { text: "Edit", value: "edit" },
-          { text: "Delete", value: "delete" },
-          { text: "Leave", value: "leave" },
+          {
+            text: "Ch. Name",
+            align: "center",
+            filterable: false,
+            value: "channelName",
+          },
+          { text: "Ch. Token", align: "center", value: "token" },
+          { text: "Desc.", align: "center", value: "desc" },
+          { text: "Default Member", align: "center", value: "booleanMember" },
+          { text: "#Default Member", align: "center", value: "defaultMember" },
+          { text: "#Member", align: "center", value: "member" },
+          { text: "Edit", align: "center", value: "edit" },
+          { text: "Delete", align: "center", value: "delete" },
+          { text: "Leave", align: "center", value: "leave" },
         ],
         channelData: [
           {
@@ -208,10 +212,10 @@
           },
         ],
         memberHeaders: [
-          { text: "User Name", value: "userName" },
-          { text: "Nickname", value: "nickname" },
-          { text: "Default Member", value: "defaultMember" },
-          { text: "Org", value: "org" },
+          { text: "User Name", align: "center", value: "userName" },
+          { text: "Nickname", align: "center", value: "nickname" },
+          { text: "Default Member", align: "center", value: "defaultMember" },
+          { text: "Org", align: "center", value: "org" },
         ],
         memberData: [
           {

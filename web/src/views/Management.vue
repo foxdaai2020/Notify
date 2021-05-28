@@ -14,13 +14,25 @@
         </v-icon>
         Ｕsers</v-btn
       >
-      <v-btn class="mr-2" outlined color="Genoa" small @click="openAddManagementOneUserModal = true">
+      <v-btn
+        class="mr-2"
+        outlined
+        color="Genoa"
+        small
+        @click="openAddManagementOneUserModal = true"
+      >
         <v-icon left>
           mdi-plus-circle-outline
         </v-icon>
         User</v-btn
       >
-      <v-btn class="mr-2" outlined color="Genoa" small @click="openEditOrganizationModal = true">
+      <v-btn
+        class="mr-2"
+        outlined
+        color="Genoa"
+        small
+        @click="openEditOrganizationModal = true"
+      >
         <v-icon left>
           mdi-square-edit-outline
         </v-icon>
@@ -36,11 +48,7 @@
         style="max-width:150px"
       ></v-text-field>
     </div>
-    <v-data-table
-      :headers="headers"
-      :items="managementData"
-      :search="search"
-    >
+    <v-data-table :headers="headers" :items="managementData" :search="search">
       <template v-slot:item.edit>
         <v-icon small @click="openUpdateUserInfoModal = true">
           mdi-square-edit-outline
@@ -51,7 +59,6 @@
           mdi-lock-reset
         </v-icon>
       </template>
-
     </v-data-table>
     <registration-dialog
       :openRegistrationDialog="openRegistrationDialog"
@@ -108,9 +115,9 @@
   import TitleBar from "../components/TitleBar";
   import AddManagementOneUserModal from "../components/modals/AddManagementOneUser";
   import EditOrganizationModal from "../components/modals/EditOrganization";
-  import UpdateUserInfoModal from '../components/modals/UpdateUserInfo.vue';
-  import ResetPasswordModal from '../components/modals/ResetPassword.vue';
-  import RegistrationDialog from '../components/dialogs/RegistrationDialog.vue'
+  import UpdateUserInfoModal from "../components/modals/UpdateUserInfo.vue";
+  import ResetPasswordModal from "../components/modals/ResetPassword.vue";
+  import RegistrationDialog from "../components/dialogs/RegistrationDialog.vue";
   export default {
     data: () => {
       return {
@@ -122,16 +129,25 @@
         openRegisterOneUserDialog: false,
         search: "",
         headers: [
-          { text: "User Name", align: "start", value: "userName",},
-          { text: "Nickname", value: "nickName" },
-          { text: "Org.", value: "org" },
-          { text: "Role", value: "role" },
-          { text: "Project Leader", value: "projectLeader" },
-          { text: "Default Ch.", value: "defaultCh" },
-          { text: "Registration Time.", value: "registrationTime" },
-          { text: "Activate", value: "activate" },
-          { text: "Edit", value: "edit", filterable: false },
-          { text: "Reset Password", value: "resetpassword", filterable: false },
+          { text: "User Name", align: "center", value: "userName" },
+          { text: "Nickname", align: "center", value: "nickName" },
+          { text: "Org.", align: "center", value: "org" },
+          { text: "Role", align: "center", value: "role" },
+          { text: "Project Leader", align: "center", value: "projectLeader" },
+          { text: "Default Ch.", align: "center", value: "defaultCh" },
+          {
+            text: "Registration Time.",
+            align: "center",
+            value: "registrationTime",
+          },
+          { text: "Activate", align: "center", value: "activate" },
+          { text: "Edit", align: "center", value: "edit", filterable: false },
+          {
+            text: "Reset Password",
+            align: "center",
+            value: "resetpassword",
+            filterable: false,
+          },
         ],
         managementData: [
           {
@@ -158,13 +174,13 @@
       "registration-dialog": RegistrationDialog,
     },
     methods: {
-        action() {
-          this.openRegistrationDialog = true
-        },
-        closeRegistrationDialog() {
-          this.openRegistrationDialog = false
-        }
-    }
+      action() {
+        this.openRegistrationDialog = true;
+      },
+      closeRegistrationDialog() {
+        this.openRegistrationDialog = false;
+      },
+    },
   };
 </script>
 
