@@ -6,7 +6,19 @@
         </slot>
       </h1>
       <div>
-        <slot name="content">
+        <h3 class="mb-10" style="color: #212529">
+          <slot name="content">
+          </slot>
+        </h3>
+      </div>
+      <div>
+        <slot name="button">
+          <v-btn outlined color="Genoa" class="error-btn-bgcolor" medium @click="backHome()">
+          <v-icon left>
+            mdi-logout-variant
+          </v-icon>
+            Back to Home Page
+          </v-btn>
         </slot>
       </div>
     </div>
@@ -27,3 +39,13 @@
   background-color: white;
 }
 </style>
+
+<script>
+  export default {
+    methods: {
+      backHome() {
+        this.$router.push('/');
+      }
+    }
+  }
+</script>
