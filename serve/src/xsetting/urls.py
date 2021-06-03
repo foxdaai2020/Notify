@@ -29,3 +29,15 @@ urlpatterns = [
 
 urlpatterns += main_urls
 
+urlpatterns = [
+  path('admin/', admin.site.urls),
+  path('', include([
+    path('', include('main.urls')),
+  ])),
+  path('api/v1.0/', include([
+    path('', include('config.urls')),
+  ])),
+  path('api/v1.0/', include([
+    path('', include('system.urls')),
+  ])),
+]
