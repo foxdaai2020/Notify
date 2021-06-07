@@ -1,0 +1,16 @@
+{
+  "name": "serve",
+  "version": "1.0.0",
+  "description": "``` $ virtualenv notify_env $ activate $ pip install --upgrade pip $ pip install django djangorestframework drf-spectacular ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "file-saver": "^2.0.5",
+    "js-xlsx": "^0.8.22",
+    "xlsx": "^0.17.0"
+  }
+}

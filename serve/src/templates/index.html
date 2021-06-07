@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,5 +9,79 @@
 </head>
 <body>
   <h1>Hello! Notify!</h1>
+  <button id="xlsx-action">DEMO</button>
+
+  <input id="import-file" type='file' style="display: none;">
+  <button id="import-xlsx">IMPORT</button>
 </body>
+
+<script>
+
+</script>
+<script src="{% static 'xlsx/dist/xlsx.full.min.js' %}"></script>
+
+<script>
+const btn = document.getElementById('xlsx-action');
+const import_btn = document.getElementById('import-xlsx');
+btn.addEventListener('click', (el) => {
+  /* original data */
+  let data = [['col A', 'col B', 'col C'], ['foo', 'bar', 'sheetjs'], [1, 2, 3]];
+  let wb = XLSX.utils.book_new();
+  let ws = XLSX.utils.aoa_to_sheet(data);
+
+  XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
+  XLSX.writeFile(wb, 'write.xlsx');
+});
+
+
+import_btn.addEventListener('click', (el) => {
+  document.getElementById('import-file').click();
+});
+
+let import_xlsx_file = document.getElementById('import-file');
+if (import_xlsx_file && import_xlsx_file.addEventListener) {
+  import_xlsx_file.addEventListener('change', fnImportXLSX, false);
+}
+
+function fnImportXLSX(e) {
+  let files = e.target.files;
+  let f = files[0];
+  let reader = new FileReader();
+
+  document.getElementById('import-file').value=''; // $('#import-file').prop('value', '');
+  reader.onload = function (e) {
+    let data = e.target.result;
+    let wb = undefined;
+    try {
+      let buf = '';
+      let bytes = new Uint8Array(data);
+      for (let i = 0, len = bytes.byteLength; i < len; i++) {
+        buf += String.fromCharCode(bytes[i]);
+      }
+      wb = XLSX.read(buf, { type: 'binary', cellDates: true, cellStyles: true });
+
+      let output = []; //func.to_json(wb);
+      for (let i = 0, len = wb.SheetNames.length; i < len; i++) {
+        output[wb.SheetNames[i]] = XLSX.utils.sheet_to_row_object_array(wb.Sheets[wb.SheetNames[i]]);
+      }
+
+      let sheets = Object.keys(output);
+      if (!sheets || !(sheets instanceof Array) || sheets.length <= 0) {
+        return;
+      }
+
+      let items = output[sheets[0]];
+      if (items.length <= 0) {
+        return;
+      }
+
+    } catch (err) {
+      return;
+    }
+  };
+  reader.readAsArrayBuffer(f);
+}
+
+
+</script>
 </html>
